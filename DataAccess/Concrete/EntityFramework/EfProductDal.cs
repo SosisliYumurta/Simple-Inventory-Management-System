@@ -29,6 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
                                      StockQuantity = p.StockQuantity,
                                      UnitPrice = p.UnitPrice,
                                      DateAdded = p.DateAdded,
+                                     
                                  };
                     return result.ToList();
                 }
@@ -43,8 +44,27 @@ namespace DataAccess.Concrete.EntityFramework
                                  StockQuantity = p.StockQuantity,
                                  UnitPrice = p.UnitPrice,
                                  DateAdded = p.DateAdded,
+                                 
                              };
                 return resultWithFilter.Where(filter).ToList();
+            }
+        }
+
+        public List<ProductInventoryDto> GetProductInventories()
+        {
+            using (StokTakipContext context = new StokTakipContext())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryId
+                             select new ProductInventoryDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 StockQuantity = p.StockQuantity,
+                                 
+                             };
+                return result.ToList();
             }
         }
     }

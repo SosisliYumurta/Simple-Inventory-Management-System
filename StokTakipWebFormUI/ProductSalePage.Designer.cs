@@ -28,20 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btn_sell = new Button();
             tb_quantity = new TextBox();
             cb_products = new ComboBox();
             cb_customers = new ComboBox();
-            tb_dateSelled = new TextBox();
             dgv_saleDetails = new DataGridView();
+            dtp_dateProductSale = new DateTimePicker();
+            label1 = new Label();
+            tb_searchByCustomerName = new TextBox();
+            label2 = new Label();
+            tb_searchByProductName = new TextBox();
+            btn_deleteProductSale = new Button();
+            btn_updateProductSale = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).BeginInit();
             SuspendLayout();
             // 
             // btn_sell
             // 
-            btn_sell.Location = new Point(866, 229);
+            btn_sell.Location = new Point(1297, 254);
             btn_sell.Name = "btn_sell";
-            btn_sell.Size = new Size(94, 29);
+            btn_sell.Size = new Size(108, 48);
             btn_sell.TabIndex = 0;
             btn_sell.Text = "Teslim Et";
             btn_sell.UseVisualStyleBackColor = true;
@@ -49,62 +56,137 @@
             // 
             // tb_quantity
             // 
-            tb_quantity.Location = new Point(835, 141);
+            tb_quantity.Location = new Point(1228, 163);
             tb_quantity.Name = "tb_quantity";
-            tb_quantity.Size = new Size(164, 27);
+            tb_quantity.PlaceholderText = "Miktar";
+            tb_quantity.Size = new Size(242, 27);
             tb_quantity.TabIndex = 1;
-            tb_quantity.Text = "Quantity";
             // 
             // cb_products
             // 
+            cb_products.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_products.FormattingEnabled = true;
-            cb_products.Location = new Point(835, 48);
+            cb_products.Location = new Point(1228, 70);
             cb_products.Name = "cb_products";
-            cb_products.Size = new Size(164, 28);
+            cb_products.Size = new Size(242, 28);
             cb_products.TabIndex = 2;
-            cb_products.Text = "Products";
             // 
             // cb_customers
             // 
+            cb_customers.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_customers.FormattingEnabled = true;
-            cb_customers.Location = new Point(835, 93);
+            cb_customers.Location = new Point(1228, 115);
             cb_customers.Name = "cb_customers";
-            cb_customers.Size = new Size(164, 28);
+            cb_customers.Size = new Size(242, 28);
             cb_customers.TabIndex = 3;
-            cb_customers.Text = "Customers";
-            // 
-            // tb_dateSelled
-            // 
-            tb_dateSelled.Location = new Point(835, 185);
-            tb_dateSelled.Name = "tb_dateSelled";
-            tb_dateSelled.Size = new Size(164, 27);
-            tb_dateSelled.TabIndex = 4;
-            tb_dateSelled.Text = "Date";
             // 
             // dgv_saleDetails
             // 
+            dgv_saleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_saleDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv_saleDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_saleDetails.DefaultCellStyle = dataGridViewCellStyle1;
             dgv_saleDetails.Location = new Point(12, 70);
             dgv_saleDetails.Name = "dgv_saleDetails";
             dgv_saleDetails.RowHeadersWidth = 51;
             dgv_saleDetails.RowTemplate.Height = 29;
-            dgv_saleDetails.Size = new Size(785, 437);
+            dgv_saleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv_saleDetails.Size = new Size(1210, 871);
             dgv_saleDetails.TabIndex = 5;
+            dgv_saleDetails.CellClick += dgv_saleDetails_CellClick;
+            // 
+            // dtp_dateProductSale
+            // 
+            dtp_dateProductSale.Location = new Point(1228, 207);
+            dtp_dateProductSale.Name = "dtp_dateProductSale";
+            dtp_dateProductSale.Size = new Size(242, 27);
+            dtp_dateProductSale.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(40, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(133, 20);
+            label1.TabIndex = 14;
+            label1.Text = "Müşteri Adı Arama";
+            // 
+            // tb_searchByCustomerName
+            // 
+            tb_searchByCustomerName.Location = new Point(12, 37);
+            tb_searchByCustomerName.Name = "tb_searchByCustomerName";
+            tb_searchByCustomerName.Size = new Size(209, 27);
+            tb_searchByCustomerName.TabIndex = 13;
+            tb_searchByCustomerName.TextChanged += tb_searchByCustomerName_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(317, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 20);
+            label2.TabIndex = 16;
+            label2.Text = "Ürün Adı Arama";
+            // 
+            // tb_searchByProductName
+            // 
+            tb_searchByProductName.Location = new Point(289, 37);
+            tb_searchByProductName.Name = "tb_searchByProductName";
+            tb_searchByProductName.Size = new Size(209, 27);
+            tb_searchByProductName.TabIndex = 15;
+            tb_searchByProductName.TextChanged += tb_searchByProductName_TextChanged;
+            // 
+            // btn_deleteProductSale
+            // 
+            btn_deleteProductSale.Location = new Point(1297, 374);
+            btn_deleteProductSale.Name = "btn_deleteProductSale";
+            btn_deleteProductSale.Size = new Size(108, 49);
+            btn_deleteProductSale.TabIndex = 18;
+            btn_deleteProductSale.Text = "Teslimatı Sil";
+            btn_deleteProductSale.UseVisualStyleBackColor = true;
+            btn_deleteProductSale.Click += btn_deleteProductSale_Click;
+            // 
+            // btn_updateProductSale
+            // 
+            btn_updateProductSale.Location = new Point(1297, 308);
+            btn_updateProductSale.Name = "btn_updateProductSale";
+            btn_updateProductSale.Size = new Size(108, 49);
+            btn_updateProductSale.TabIndex = 17;
+            btn_updateProductSale.Text = "Teslimatı Güncelle";
+            btn_updateProductSale.UseVisualStyleBackColor = true;
+            btn_updateProductSale.Click += btn_updateProductSale_Click;
             // 
             // ProductSalePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1038, 519);
+            ClientSize = new Size(1482, 953);
+            Controls.Add(btn_deleteProductSale);
+            Controls.Add(btn_updateProductSale);
+            Controls.Add(label2);
+            Controls.Add(tb_searchByProductName);
+            Controls.Add(label1);
+            Controls.Add(tb_searchByCustomerName);
+            Controls.Add(dtp_dateProductSale);
             Controls.Add(dgv_saleDetails);
-            Controls.Add(tb_dateSelled);
             Controls.Add(cb_customers);
             Controls.Add(cb_products);
             Controls.Add(tb_quantity);
             Controls.Add(btn_sell);
+            KeyPreview = true;
             Name = "ProductSalePage";
-            Text = "ProductSalePage";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "TESLİM EDİLEN ÜRÜNLER";
             Load += ProductSalePage_Load;
+            KeyDown += ProductSalePage_KeyDown;
+            KeyPress += ProductSalePage_KeyPress;
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -116,7 +198,13 @@
         private TextBox tb_quantity;
         private ComboBox cb_products;
         private ComboBox cb_customers;
-        private TextBox tb_dateSelled;
         private DataGridView dgv_saleDetails;
+        private DateTimePicker dtp_dateProductSale;
+        private Label label1;
+        private TextBox tb_searchByCustomerName;
+        private Label label2;
+        private TextBox tb_searchByProductName;
+        private Button btn_deleteProductSale;
+        private Button btn_updateProductSale;
     }
 }

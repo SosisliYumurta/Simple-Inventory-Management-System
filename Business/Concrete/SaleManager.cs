@@ -23,7 +23,7 @@ namespace Business.Concrete
 
         public void Delete(Sale sale)
         {
-            throw new NotImplementedException();
+            _saleDal.Delete(sale);
         }
 
         public Sale Get(int id)
@@ -41,9 +41,19 @@ namespace Business.Concrete
             return _saleDal.GetSalesDetails().ToList();
         }
 
+        public List<SalesDetailsDto> GetSalesDetailsByCustomerName(string customerName)
+        {
+            return _saleDal.GetSalesDetails(s => s.CustomerName.ToLower().Contains(customerName));
+        }
+
+        public List<SalesDetailsDto> GetSalesDetailsByProductName(string productName)
+        {
+            return _saleDal.GetSalesDetails(s => s.ProductName.ToLower().Contains(productName));
+        }
+
         public void Update(Sale sale)
         {
-            throw new NotImplementedException();
+            _saleDal.Update(sale);
         }
     }
 }

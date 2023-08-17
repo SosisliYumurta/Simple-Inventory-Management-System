@@ -46,19 +46,21 @@
             // 
             // dgw_productsList
             // 
+            dgw_productsList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgw_productsList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgw_productsList.Location = new Point(12, 105);
+            dgw_productsList.Location = new Point(12, 70);
             dgw_productsList.Name = "dgw_productsList";
             dgw_productsList.RowHeadersWidth = 51;
             dgw_productsList.RowTemplate.Height = 29;
-            dgw_productsList.Size = new Size(774, 470);
+            dgw_productsList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgw_productsList.Size = new Size(1210, 871);
             dgw_productsList.TabIndex = 0;
             dgw_productsList.CellClick += dgw_productsList_CellClick;
             // 
             // cb_searchByCategoryName
             // 
             cb_searchByCategoryName.FormattingEnabled = true;
-            cb_searchByCategoryName.Location = new Point(384, 72);
+            cb_searchByCategoryName.Location = new Point(384, 37);
             cb_searchByCategoryName.Name = "cb_searchByCategoryName";
             cb_searchByCategoryName.Size = new Size(204, 28);
             cb_searchByCategoryName.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             // tb_searchByProductName
             // 
-            tb_searchByProductName.Location = new Point(12, 72);
+            tb_searchByProductName.Location = new Point(12, 37);
             tb_searchByProductName.Name = "tb_searchByProductName";
             tb_searchByProductName.Size = new Size(209, 27);
             tb_searchByProductName.TabIndex = 2;
@@ -76,16 +78,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(60, 49);
+            label1.Location = new Point(59, 14);
             label1.Name = "label1";
-            label1.Size = new Size(104, 20);
+            label1.Size = new Size(115, 20);
             label1.TabIndex = 3;
-            label1.Text = "Product Name";
+            label1.Text = "Ürün Adı Arama";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(451, 49);
+            label2.Location = new Point(451, 14);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 4;
@@ -94,7 +97,7 @@
             // 
             // btn_productAdd
             // 
-            btn_productAdd.Location = new Point(853, 358);
+            btn_productAdd.Location = new Point(1289, 358);
             btn_productAdd.Name = "btn_productAdd";
             btn_productAdd.Size = new Size(108, 49);
             btn_productAdd.TabIndex = 5;
@@ -104,7 +107,7 @@
             // 
             // tb_productName
             // 
-            tb_productName.Location = new Point(792, 105);
+            tb_productName.Location = new Point(1228, 105);
             tb_productName.Name = "tb_productName";
             tb_productName.PlaceholderText = "Ürün İsmi";
             tb_productName.Size = new Size(242, 27);
@@ -112,16 +115,16 @@
             // 
             // cb_categoryName
             // 
+            cb_categoryName.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_categoryName.FormattingEnabled = true;
-            cb_categoryName.Location = new Point(792, 161);
+            cb_categoryName.Location = new Point(1228, 161);
             cb_categoryName.Name = "cb_categoryName";
             cb_categoryName.Size = new Size(242, 28);
             cb_categoryName.TabIndex = 7;
-            cb_categoryName.Text = "Kategoriler";
             // 
             // tb_stockQuantity
             // 
-            tb_stockQuantity.Location = new Point(792, 213);
+            tb_stockQuantity.Location = new Point(1228, 213);
             tb_stockQuantity.Name = "tb_stockQuantity";
             tb_stockQuantity.PlaceholderText = "Miktar";
             tb_stockQuantity.Size = new Size(242, 27);
@@ -129,7 +132,7 @@
             // 
             // tb_unitPrice
             // 
-            tb_unitPrice.Location = new Point(792, 264);
+            tb_unitPrice.Location = new Point(1228, 264);
             tb_unitPrice.Name = "tb_unitPrice";
             tb_unitPrice.PlaceholderText = "Birim Fiyatı";
             tb_unitPrice.Size = new Size(242, 27);
@@ -137,14 +140,14 @@
             // 
             // dtp_dateAdded
             // 
-            dtp_dateAdded.Location = new Point(792, 310);
+            dtp_dateAdded.Location = new Point(1228, 310);
             dtp_dateAdded.Name = "dtp_dateAdded";
             dtp_dateAdded.Size = new Size(242, 27);
             dtp_dateAdded.TabIndex = 11;
             // 
             // button1
             // 
-            button1.Location = new Point(853, 423);
+            button1.Location = new Point(1289, 423);
             button1.Name = "button1";
             button1.Size = new Size(108, 49);
             button1.TabIndex = 12;
@@ -154,7 +157,7 @@
             // 
             // btn_deleteProduct
             // 
-            btn_deleteProduct.Location = new Point(853, 489);
+            btn_deleteProduct.Location = new Point(1289, 489);
             btn_deleteProduct.Name = "btn_deleteProduct";
             btn_deleteProduct.Size = new Size(108, 49);
             btn_deleteProduct.TabIndex = 13;
@@ -166,7 +169,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1046, 587);
+            ClientSize = new Size(1482, 953);
             Controls.Add(btn_deleteProduct);
             Controls.Add(button1);
             Controls.Add(dtp_dateAdded);
@@ -182,7 +185,7 @@
             Controls.Add(dgw_productsList);
             Name = "ProductsPage";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "ÜRÜNLER";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgw_productsList).EndInit();
             ResumeLayout(false);

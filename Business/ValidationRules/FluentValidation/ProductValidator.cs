@@ -15,9 +15,15 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.ProductName).NotEmpty();
             RuleFor(p => p.CategoryId).NotEmpty();
             RuleFor(p => p.StockQuantity).NotEmpty();
+            RuleFor(p => p).Must(MinusStockquantity).WithMessage("Yeterli stok yok");
             RuleFor(p => p.UnitPrice).NotEmpty();
             RuleFor(p => p.DateAdded).NotEmpty();
 
+        }
+        
+        private bool MinusStockquantity(Product product)
+        {
+            return product.StockQuantity >= 0;
         }
     }
 }

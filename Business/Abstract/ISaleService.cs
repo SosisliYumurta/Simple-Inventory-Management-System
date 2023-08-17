@@ -9,11 +9,13 @@ namespace Business.Abstract
 {
     public interface ISaleService
     {
-        void Add(Sale product);
-        void Update(Sale product);
-        void Delete(Sale product);
+        void Add(Sale sale);
+        void Update(Sale sale);
+        void Delete(Sale sale);
         List<Sale> GetAll();
         Sale Get(int id);
         List<SalesDetailsDto> GetSalesDetails();
+        List<SalesDetailsDto> GetSalesDetailsByCustomerName(string customerName);
+        List<SalesDetailsDto> GetSalesDetailsByProductName(string productName);
     }
 }

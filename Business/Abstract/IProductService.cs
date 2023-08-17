@@ -17,6 +17,7 @@ namespace Business.Abstract
         List<ProductDetailDto> GetProductDetail();
         List<ProductDetailDto> GetProdcutsDetailsByProductName(string productName);
         List<ProductDetailDto> GetProductsDetailsByCategoryName(string categoryName);
+        List<ProductInventoryDto> productInventories();
 
 
     }

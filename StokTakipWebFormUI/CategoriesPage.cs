@@ -33,33 +33,60 @@ namespace StokTakipWebFormUI
 
         private void btn_categoryAdd_Click(object sender, EventArgs e)
         {
-            _categoryService.Add(new Category
+            try
             {
-                CategoryName = tb_CategoryName.Text
-            });
-            MessageBox.Show("Kategori Eklendi");
-            LoadCategories();
+                _categoryService.Add(new Category
+                {
+                    CategoryName = tb_CategoryName.Text
+                });
+                MessageBox.Show("Kategori Eklendi");
+                LoadCategories();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void btn_updateCustomer_Click(object sender, EventArgs e)
         {
-            _categoryService.Update(new Category
+            try
             {
-                CategoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value),
-                CategoryName = tb_CategoryName.Text
-            });
-            MessageBox.Show("Kategori güncellendi");
-            LoadCategories();
+                _categoryService.Update(new Category
+                {
+                    CategoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value),
+                    CategoryName = tb_CategoryName.Text
+                });
+                MessageBox.Show("Kategori güncellendi");
+                LoadCategories();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void btn_deleteCategory_Click(object sender, EventArgs e)
         {
-            _categoryService.Delete(new Category
+            try
             {
-                CategoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value)
-            });
-            MessageBox.Show("Kategori Silindi");
-            LoadCategories();
+                _categoryService.Delete(new Category
+                {
+                    CategoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value)
+                });
+                MessageBox.Show("Kategori Silindi");
+                LoadCategories();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void dgv_categoriesList_CellClick(object sender, DataGridViewCellEventArgs e)

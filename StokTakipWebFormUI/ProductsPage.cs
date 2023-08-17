@@ -23,6 +23,7 @@ namespace StokTakipWebFormUI
             LoadProducts();
             //LoadCategory();
             LoadCategoryForAdding();
+            dgw_productsList.Columns[0].Visible = false;
         }
         void LoadCategoryForAdding()
         {
@@ -41,43 +42,24 @@ namespace StokTakipWebFormUI
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
         {
-            //string searchName = tb_searchByProductName.Text.Trim();
-
-            //var searchResults = _productService.GetProductDetail()
-            //    .Where(p => p.ProductName.Contains(searchName, StringComparison.OrdinalIgnoreCase))
-            //    .ToList();
-
-            //dgw_productsList.DataSource = searchResults;
-
             dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text);
-
-
         }
 
         private void cb_searchByCategoryName_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                //var searchResults = _productService.GetProductDetail().Where(p => p.CategoryName == (string)cb_searchByCategoryName.SelectedValue).ToList();
-
-                //dgw_productsList.DataSource = searchResults;
-
-                //dgw_productsList.DataSource = _categoryService.GetProductsByCategoryName(cb_searchByCategoryName.Text);
                 dgw_productsList.DataSource = _productService.GetProductsDetailsByCategoryName(cb_searchByCategoryName.Text);
-
             }
             catch
             {
-
-
             }
-
         }
 
         private void btn_productAdd_Click(object sender, EventArgs e)
         {
             try
-            {
+            {             
                 _productService.Add(new Product
                 {
                     CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
@@ -87,28 +69,34 @@ namespace StokTakipWebFormUI
                     DateAdded = dtp_dateAdded.Text,
                 });
                 MessageBox.Show("Ürün eklendi");
+                LoadProducts();
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
-            
-            //LoadCategory();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _productService.Update(new Product
+            try
             {
-                ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
-                ProductName = tb_productName.Text,
-                CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
-                StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
-                UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
-                DateAdded = dtp_dateAdded.Text,
-
-            });
+                _productService.Update(new Product
+                {
+                    ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
+                    ProductName = tb_productName.Text,
+                    CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
+                    StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
+                    UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
+                    DateAdded = dtp_dateAdded.Text,
+                });
+                MessageBox.Show("Ürün Güncellendi");
+                LoadProducts();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }          
         }
 
         private void dgw_productsList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -123,12 +111,23 @@ namespace StokTakipWebFormUI
 
         private void btn_deleteProduct_Click(object sender, EventArgs e)
         {
-            _productService.Delete(new Product
+            try
             {
-                ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
-            });
-            MessageBox.Show("Ürün silindi");
-            LoadProducts();
+                _productService.Delete(new Product
+                {
+                    ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
+                });
+                MessageBox.Show("Ürün silindi");
+                LoadProducts();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

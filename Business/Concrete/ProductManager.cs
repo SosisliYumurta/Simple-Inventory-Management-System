@@ -27,6 +27,7 @@ namespace Business.Concrete
 
         public void Delete(Product product)
         {
+            ValidationTool.Validate(new ProductDeleteValidator(), product);
             _productDal.Delete(product);
         }
 
@@ -53,6 +54,11 @@ namespace Business.Concrete
         public List<ProductDetailDto> GetProductsDetailsByCategoryName(string categoryName)
         {
             return _productDal.GetProductDetails(p => p.CategoryName == categoryName).ToList();
+        }
+
+        public List<ProductInventoryDto> productInventories()
+        {
+            return _productDal.GetProductInventories();
         }
 
         public void Update(Product product)

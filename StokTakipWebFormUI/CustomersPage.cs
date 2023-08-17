@@ -34,41 +34,72 @@ namespace StokTakipWebFormUI
 
         private void btn_cusstomerAdd_Click(object sender, EventArgs e)
         {
-            _customerService.Add(new Customer
+            try
             {
-                CustomerName = tb_customerName.Text,
-                ContactInfo = tb_customerContactInfo.Text,
-            });
-            MessageBox.Show("Müşteri Eklendi");
-            LoadCustomers();
+                _customerService.Add(new Customer
+                {
+                    CustomerName = tb_customerName.Text,
+                    CompanyName = tb_companyName.Text,
+                    ContactInfo = tb_customerContactInfo.Text,
+                });
+                MessageBox.Show("Müşteri Eklendi");
+                LoadCustomers();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void btn_customerUpdate_Click(object sender, EventArgs e)
         {
-            _customerService.Update(new Customer
+            try
             {
-                CustomerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value),
-                ContactInfo = tb_customerContactInfo.Text,
-                CustomerName = tb_customerName.Text,
-            });
-            MessageBox.Show("Müşteri Güncellendi");
-            LoadCustomers();
+                _customerService.Update(new Customer
+                {
+                    CustomerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value),
+                    CompanyName = tb_companyName.Text,
+
+                    ContactInfo = tb_customerContactInfo.Text,
+                    CustomerName = tb_customerName.Text,
+                });
+                MessageBox.Show("Müşteri Güncellendi");
+                LoadCustomers();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void dgv_CustomersList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             tb_customerName.Text = dgv_CustomersList.CurrentRow.Cells[1].Value.ToString();
-            tb_customerContactInfo.Text = dgv_CustomersList.CurrentRow.Cells[2].Value.ToString();
+            tb_customerContactInfo.Text = dgv_CustomersList.CurrentRow.Cells[3].Value.ToString();
+            tb_companyName.Text = dgv_CustomersList.CurrentRow.Cells[2].Value.ToString();
         }
 
         private void btn_deleteCustomer_Click(object sender, EventArgs e)
         {
-            _customerService.Delete(new Customer
+            try
             {
-                CustomerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value)
-            });
-            MessageBox.Show("Müşteri Silindi");
-            LoadCustomers();
+                _customerService.Delete(new Customer
+                {
+                    CustomerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value)
+                });
+                MessageBox.Show("Müşteri Silindi");
+                LoadCustomers();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
         }
     }
 }

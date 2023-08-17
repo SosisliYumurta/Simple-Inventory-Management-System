@@ -43,20 +43,20 @@ namespace StokTakipWebFormUI
         private void MainPage_Load(object sender, EventArgs e)
         {
             LoadProducts();
+            //dgv_products.Columns[0].Width = -1;
+            dgv_products.Columns[0].Visible = false;
         }
         void LoadProducts()
         {
-            dgv_products.DataSource = _productService.GetProductDetail();
+            dgv_products.DataSource = _productService.productInventories();
             ChangeColumsName();
         }
 
         private void ChangeColumsName()
         {
+            dgv_products.Columns["ProductId"].HeaderText = "Ürün Id";
             dgv_products.Columns["ProductName"].HeaderText = "Ürün İsmi";
-            dgv_products.Columns["CategoryName"].HeaderText = "Kategori İsmi";
             dgv_products.Columns["StockQuantity"].HeaderText = "Stok Miktarı";
-            dgv_products.Columns["UnitPrice"].HeaderText = "Birim Fiyatı";
-            dgv_products.Columns["DateAdded"].HeaderText = "Eklenme Tarihi";
         }
 
         private void btn_productSale_Click(object sender, EventArgs e)
@@ -64,5 +64,36 @@ namespace StokTakipWebFormUI
             ProductSalePage productSalePage = new ProductSalePage();
             productSalePage.ShowDialog();
         }
+
+        private void ms_products_Click(object sender, EventArgs e)
+        {
+            ProductsPage form = new ProductsPage();
+            form.ShowDialog();
+        }
+
+        private void ms_customers_Click(object sender, EventArgs e)
+        {
+            CustomersPage customersPage = new CustomersPage();
+            customersPage.ShowDialog();
+        }
+
+        private void ms_categories_Click(object sender, EventArgs e)
+        {
+            CategoriesPage categoriesPage = new CategoriesPage();
+            categoriesPage.ShowDialog();
+        }
+
+        private void ms_productsSales_Click(object sender, EventArgs e)
+        {
+            ProductSalePage productSalePage = new ProductSalePage();
+            productSalePage.ShowDialog();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            LoadProducts();
+        }
+
+
     }
 }

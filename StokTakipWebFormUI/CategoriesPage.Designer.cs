@@ -44,20 +44,21 @@
             dgv_categoriesList.Name = "dgv_categoriesList";
             dgv_categoriesList.RowHeadersWidth = 51;
             dgv_categoriesList.RowTemplate.Height = 29;
-            dgv_categoriesList.Size = new Size(428, 426);
+            dgv_categoriesList.Size = new Size(1251, 929);
             dgv_categoriesList.TabIndex = 0;
             dgv_categoriesList.CellClick += dgv_categoriesList_CellClick;
             // 
             // tb_CategoryName
             // 
-            tb_CategoryName.Location = new Point(518, 107);
+            tb_CategoryName.Location = new Point(1269, 78);
             tb_CategoryName.Name = "tb_CategoryName";
+            tb_CategoryName.PlaceholderText = "Kategori Adı";
             tb_CategoryName.Size = new Size(201, 27);
             tb_CategoryName.TabIndex = 23;
             // 
             // btn_deleteCategory
             // 
-            btn_deleteCategory.Location = new Point(569, 282);
+            btn_deleteCategory.Location = new Point(1320, 253);
             btn_deleteCategory.Name = "btn_deleteCategory";
             btn_deleteCategory.Size = new Size(108, 49);
             btn_deleteCategory.TabIndex = 21;
@@ -67,7 +68,7 @@
             // 
             // btn_updateCustomer
             // 
-            btn_updateCustomer.Location = new Point(569, 216);
+            btn_updateCustomer.Location = new Point(1320, 187);
             btn_updateCustomer.Name = "btn_updateCustomer";
             btn_updateCustomer.Size = new Size(108, 49);
             btn_updateCustomer.TabIndex = 20;
@@ -77,7 +78,7 @@
             // 
             // btn_categoryAdd
             // 
-            btn_categoryAdd.Location = new Point(569, 151);
+            btn_categoryAdd.Location = new Point(1320, 122);
             btn_categoryAdd.Name = "btn_categoryAdd";
             btn_categoryAdd.Size = new Size(108, 49);
             btn_categoryAdd.TabIndex = 19;
@@ -89,7 +90,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 453);
+            ClientSize = new Size(1482, 953);
             Controls.Add(tb_CategoryName);
             Controls.Add(btn_deleteCategory);
             Controls.Add(btn_updateCustomer);
@@ -97,7 +98,7 @@
             Controls.Add(dgv_categoriesList);
             Name = "CategoriesPage";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CategoriesPage";
+            Text = "KATEGORİLER";
             Load += CategoriesPage_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_categoriesList).EndInit();
             ResumeLayout(false);

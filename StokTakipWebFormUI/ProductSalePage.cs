@@ -30,28 +30,39 @@ namespace StokTakipWebFormUI
 
         private void btn_sell_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var product = _productService.GetProduct(Convert.ToInt32(cb_products.SelectedValue));
+                product.StockQuantity -= Convert.ToInt32(tb_quantity.Text);
+                _productService.Update(product);
+                _saleService.Add(new Sale
+                {
+                    CustomerID = Convert.ToInt32(cb_customers.SelectedValue),
+                    ProductId = Convert.ToInt32(cb_products.SelectedValue),
+                    Date = dtp_dateProductSale.Text,
+                    Quantity = Convert.ToInt32(tb_quantity.Text)
+                });
+
+                MessageBox.Show("Ürün teslim edildi");
+                LoadDataGridView();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
             //Product product = new Product();
             //product.StockQuantity -= Convert.ToInt32(cb_products.SelectedValue);
-            var product = _productService.GetProduct(Convert.ToInt32(cb_products.SelectedValue));
-            product.StockQuantity -= Convert.ToInt32(tb_quantity.Text);
-            _productService.Update(product);
-            _saleService.Add(new Sale
-            {
-                CustomerID = Convert.ToInt32(cb_customers.SelectedValue),
-                ProductId = Convert.ToInt32(cb_products.SelectedValue),
-                Date = tb_dateSelled.Text,
-                Quantity = Convert.ToInt32(tb_quantity.Text)
-            });
-            
-            MessageBox.Show("Ürün eklendi");
-            LoadDataGridView();
+
         }
 
         private void ProductSalePage_Load(object sender, EventArgs e)
         {
+
             LoadProducts();
             LoadCustomers();
             LoadDataGridView();
+
         }
         void LoadDataGridView()
         {
@@ -62,12 +73,86 @@ namespace StokTakipWebFormUI
             cb_products.DataSource = _productService.GetAll().ToList();
             cb_products.ValueMember = "ProductId";
             cb_products.DisplayMember = "ProductName";
+
         }
         void LoadCustomers()
         {
             cb_customers.DataSource = _customerService.GetAll().ToList();
             cb_customers.ValueMember = "CustomerId";
             cb_customers.DisplayMember = "CustomerName";
+        }
+
+        private void tb_searchByCustomerName_TextChanged(object sender, EventArgs e)
+        {
+            dgv_saleDetails.DataSource = _saleService.GetSalesDetailsByCustomerName(tb_searchByCustomerName.Text);
+
+        }
+
+        private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
+        {
+            dgv_saleDetails.DataSource = _saleService.GetSalesDetailsByProductName(tb_searchByProductName.Text);
+        }
+
+        private void btn_updateProductSale_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _saleService.Update(new Sale
+                {
+                    SaleID = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value),
+                    CustomerID = Convert.ToInt32(cb_customers.SelectedValue),
+                    ProductId = Convert.ToInt32(cb_products.SelectedValue),
+                    Quantity = Convert.ToInt32(tb_quantity.Text),
+                    Date = dtp_dateProductSale.Text
+
+                });
+                MessageBox.Show("Teslimat bilgisi Güncellendi");
+                LoadDataGridView();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void btn_deleteProductSale_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _saleService.Delete(new Sale
+                {
+                    SaleID = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value),
+                });
+                MessageBox.Show("Teslimat Silindi");
+                LoadDataGridView();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void dgv_saleDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cb_products.Text = dgv_saleDetails.CurrentRow.Cells[1].Value.ToString();
+            cb_customers.Text = dgv_saleDetails.CurrentRow.Cells[2].Value.ToString();
+            tb_quantity.Text = dgv_saleDetails.CurrentRow.Cells[4].Value.ToString();
+            dtp_dateProductSale.Text = dgv_saleDetails.CurrentRow.Cells[5].Value.ToString();
+        }
+
+        private void ProductSalePage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
+        }
+
+        private void ProductSalePage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close(); // Formu kapat
+            }
         }
     }
 }
