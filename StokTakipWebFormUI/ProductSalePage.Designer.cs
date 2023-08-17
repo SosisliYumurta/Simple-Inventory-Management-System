@@ -43,7 +43,7 @@
             btn_sell.Name = "btn_sell";
             btn_sell.Size = new Size(94, 29);
             btn_sell.TabIndex = 0;
-            btn_sell.Text = "button1";
+            btn_sell.Text = "Teslim Et";
             btn_sell.UseVisualStyleBackColor = true;
             btn_sell.Click += btn_sell_Click;
             // 

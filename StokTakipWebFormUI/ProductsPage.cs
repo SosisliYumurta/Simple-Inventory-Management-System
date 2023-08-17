@@ -76,15 +76,24 @@ namespace StokTakipWebFormUI
 
         private void btn_productAdd_Click(object sender, EventArgs e)
         {
-            _productService.Add(new Product
+            try
             {
-                CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
-                ProductName = tb_productName.Text,
-                StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
-                UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
-                DateAdded = dtp_dateAdded.Text,
-            });
-            MessageBox.Show("Ürün eklendi");
+                _productService.Add(new Product
+                {
+                    CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
+                    ProductName = tb_productName.Text,
+                    StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
+                    UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
+                    DateAdded = dtp_dateAdded.Text,
+                });
+                MessageBox.Show("Ürün eklendi");
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+            
             //LoadCategory();
         }
 

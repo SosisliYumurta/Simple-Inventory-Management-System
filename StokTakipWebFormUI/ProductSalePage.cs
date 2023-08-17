@@ -30,6 +30,11 @@ namespace StokTakipWebFormUI
 
         private void btn_sell_Click(object sender, EventArgs e)
         {
+            //Product product = new Product();
+            //product.StockQuantity -= Convert.ToInt32(cb_products.SelectedValue);
+            var product = _productService.GetProduct(Convert.ToInt32(cb_products.SelectedValue));
+            product.StockQuantity -= Convert.ToInt32(tb_quantity.Text);
+            _productService.Update(product);
             _saleService.Add(new Sale
             {
                 CustomerID = Convert.ToInt32(cb_customers.SelectedValue),
@@ -37,6 +42,7 @@ namespace StokTakipWebFormUI
                 Date = tb_dateSelled.Text,
                 Quantity = Convert.ToInt32(tb_quantity.Text)
             });
+            
             MessageBox.Show("Ürün eklendi");
             LoadDataGridView();
         }
