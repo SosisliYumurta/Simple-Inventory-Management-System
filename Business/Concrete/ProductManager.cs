@@ -4,6 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

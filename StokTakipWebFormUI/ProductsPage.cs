@@ -3,6 +3,7 @@ using Business.DependencyResolvers.Ninject;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 
 namespace StokTakipWebFormUI
@@ -145,6 +146,53 @@ namespace StokTakipWebFormUI
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dgw_productsList.Columns.Count > 0)
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = excel.Workbooks.Add(Type.Missing);
+                Worksheet sheet = (Worksheet)workbook.ActiveSheet;
+
+                for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
+                {
+                    sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < dgw_productsList.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgw_productsList.Columns.Count; j++)
+                    {
+                        sheet.Cells[i + 2, j + 1] = dgw_productsList.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+
+                sheet.Columns.AutoFit();
+                excel.Visible = true;
+
+                ReleaseExcelObject(sheet);
+                ReleaseExcelObject(workbook);
+                ReleaseExcelObject(excel);
+
+            }
+            void ReleaseExcelObject(object obj)
+            {
+                try
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                    obj = null;
+                }
+                catch (Exception ex)
+                {
+                    obj = null;
+                }
+                finally
+                {
+                    GC.Collect();
+                }
             }
         }
     }

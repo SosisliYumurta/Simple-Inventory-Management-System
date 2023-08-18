@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btn_products = new Button();
             btn_categories = new Button();
             btn_customers = new Button();
             btn_productSale = new Button();
             dgv_products = new DataGridView();
             menuStrip1 = new MenuStrip();
-            menu_strip_tools = new ToolStripMenuItem();
-            ms_products = new ToolStripMenuItem();
-            ms_customers = new ToolStripMenuItem();
-            ms_categories = new ToolStripMenuItem();
-            ms_productsSales = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
+            ms_products1 = new ToolStripMenuItem();
+            ms_customers1 = new ToolStripMenuItem();
+            ms_categories1 = new ToolStripMenuItem();
             label1 = new Label();
             tb_searchByProductName = new TextBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgv_products).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -110,47 +110,12 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menu_strip_tools, toolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, ms_products1, ms_customers1, ms_categories1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1902, 28);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // menu_strip_tools
-            // 
-            menu_strip_tools.DropDownItems.AddRange(new ToolStripItem[] { ms_products, ms_customers, ms_categories, ms_productsSales });
-            menu_strip_tools.Name = "menu_strip_tools";
-            menu_strip_tools.Size = new Size(87, 24);
-            menu_strip_tools.Text = "İŞLEMLER";
-            // 
-            // ms_products
-            // 
-            ms_products.Name = "ms_products";
-            ms_products.Size = new Size(261, 26);
-            ms_products.Text = "ÜRÜNLER";
-            ms_products.Click += ms_products_Click;
-            // 
-            // ms_customers
-            // 
-            ms_customers.Name = "ms_customers";
-            ms_customers.Size = new Size(261, 26);
-            ms_customers.Text = "MÜŞTERİLER";
-            ms_customers.Click += ms_customers_Click;
-            // 
-            // ms_categories
-            // 
-            ms_categories.Name = "ms_categories";
-            ms_categories.Size = new Size(261, 26);
-            ms_categories.Text = "KATEGORİLER";
-            ms_categories.Click += ms_categories_Click;
-            // 
-            // ms_productsSales
-            // 
-            ms_productsSales.Name = "ms_productsSales";
-            ms_productsSales.Size = new Size(261, 26);
-            ms_productsSales.Text = "TESLİM EDİLEN ÜRÜNLER";
-            ms_productsSales.Click += ms_productsSales_Click;
             // 
             // toolStripMenuItem1
             // 
@@ -158,6 +123,27 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(34, 24);
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
+            // ms_products1
+            // 
+            ms_products1.Name = "ms_products1";
+            ms_products1.Size = new Size(63, 24);
+            ms_products1.Text = "ÜRÜN";
+            ms_products1.Click += ms_products1_Click;
+            // 
+            // ms_customers1
+            // 
+            ms_customers1.Name = "ms_customers1";
+            ms_customers1.Size = new Size(48, 24);
+            ms_customers1.Text = "KİŞİ";
+            ms_customers1.Click += ms_customers1_Click;
+            // 
+            // ms_categories1
+            // 
+            ms_categories1.Name = "ms_categories1";
+            ms_categories1.Size = new Size(91, 24);
+            ms_categories1.Text = "KATEGORİ";
+            ms_categories1.Click += ms_categories1_Click;
             // 
             // label1
             // 
@@ -175,6 +161,11 @@
             tb_searchByProductName.Size = new Size(209, 27);
             tb_searchByProductName.TabIndex = 6;
             tb_searchByProductName.TextChanged += tb_searchByProductName_TextChanged;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // MainPage
             // 
@@ -210,13 +201,12 @@
         private Button btn_productSale;
         private DataGridView dgv_products;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem menu_strip_tools;
-        private ToolStripMenuItem ms_products;
-        private ToolStripMenuItem ms_customers;
-        private ToolStripMenuItem ms_categories;
-        private ToolStripMenuItem ms_productsSales;
         private ToolStripMenuItem toolStripMenuItem1;
         private Label label1;
         private TextBox tb_searchByProductName;
+        private ToolStripMenuItem ms_products1;
+        private ToolStripMenuItem ms_customers1;
+        private ToolStripMenuItem ms_categories1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

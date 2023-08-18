@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
 using Entities;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,10 +47,7 @@ namespace StokTakipWebFormUI
                 MessageBox.Show("Ürün teslim edildi");
                 LoadDataGridView();
             }
-            catch (NullReferenceException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
             catch (Exception exception)
             {
 
@@ -135,6 +133,10 @@ namespace StokTakipWebFormUI
                 MessageBox.Show("Teslimat bilgisi Güncellendi");
                 LoadDataGridView();
             }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Seçilecek öğe bulunamadı veya seçim yapmadınız");
+            }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
@@ -151,6 +153,10 @@ namespace StokTakipWebFormUI
                 });
                 MessageBox.Show("Teslimat Silindi");
                 LoadDataGridView();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Seçilecek öğe bulunamadı veya seçim yapmadınız");
             }
             catch (Exception exception)
             {
@@ -187,6 +193,86 @@ namespace StokTakipWebFormUI
             {
                 btn_sell_Click(sender, e);
             }
+        }
+
+        private void ProductSalePage_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.LoadProducts();
+        }
+
+        private void ProductSalePage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.LoadProducts();
+        }
+
+        private void btn_export_Click(object sender, EventArgs e)
+        {
+            if (dgv_saleDetails.Columns.Count > 0)
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = excel.Workbooks.Add(Type.Missing);
+                Worksheet sheet = (Worksheet)workbook.ActiveSheet;
+
+                for (int i = 1; i <= dgv_saleDetails.Columns.Count; i++)
+                {
+                    sheet.Cells[1, i] = dgv_saleDetails.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < dgv_saleDetails.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgv_saleDetails.Columns.Count; j++)
+                    {
+                        sheet.Cells[i + 2, j + 1] = dgv_saleDetails.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+
+                sheet.Columns.AutoFit();
+                excel.Visible = true;
+
+                ReleaseExcelObject(sheet);
+                ReleaseExcelObject(workbook);
+                ReleaseExcelObject(excel);
+            }
+            void ReleaseExcelObject(object obj)
+            {
+                try
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                    obj = null;
+                }
+                catch (Exception ex)
+                {
+                    obj = null;
+                }
+                finally
+                {
+                    GC.Collect();
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadDataGridView();
+        }
+        void filter()
+        {
+            DateTime start = dtp_start.Value.AddDays(-1);
+            DateTime end = dtp_end.Value;
+
+            dgv_saleDetails.DataSource = _saleService.GetSalesDetails().Where(s => DateTime.Parse(s.Date) >= start && DateTime.Parse(s.Date) < end).ToList();
+        }
+
+        private void dtp_start_ValueChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+
+        private void dtp_end_ValueChanged(object sender, EventArgs e)
+        {
+            filter();
         }
     }
 }

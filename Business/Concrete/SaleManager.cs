@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Utilities;
+using Business.ValidationRules.FluentValidation;
 using DataAccess.Abstract;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,13 @@ namespace Business.Concrete
         }
         public void Add(Sale sale)
         {
+            ValidationTool.Validate(new ProductSaleValidator(), sale);
             _saleDal.Add(sale);
+        }
+        public void Update(Sale sale)
+        {
+            ValidationTool.Validate(new ProductSaleValidator(), sale);
+            _saleDal.Update(sale);
         }
 
         public void Delete(Sale sale)
@@ -51,9 +60,6 @@ namespace Business.Concrete
             return _saleDal.GetSalesDetails(s => s.ProductName.ToLower().Contains(productName));
         }
 
-        public void Update(Sale sale)
-        {
-            _saleDal.Update(sale);
-        }
+        
     }
 }

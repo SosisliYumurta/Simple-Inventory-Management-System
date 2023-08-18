@@ -16,5 +16,16 @@ namespace StokTakipWebFormUI
         {
             InitializeComponent();
         }
+
+        private void ReportPage_Load(object sender, EventArgs e)
+        {
+            
+            
+
+
+
+
+
+        }
     }
 }

@@ -45,6 +45,10 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
+            btn_export = new Button();
+            dtp_start = new DateTimePicker();
+            dtp_end = new DateTimePicker();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).BeginInit();
             SuspendLayout();
             // 
@@ -134,7 +138,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(317, 14);
+            label2.Location = new Point(302, 14);
             label2.Name = "label2";
             label2.Size = new Size(115, 20);
             label2.TabIndex = 16;
@@ -142,7 +146,7 @@
             // 
             // tb_searchByProductName
             // 
-            tb_searchByProductName.Location = new Point(289, 37);
+            tb_searchByProductName.Location = new Point(253, 37);
             tb_searchByProductName.Name = "tb_searchByProductName";
             tb_searchByProductName.Size = new Size(209, 27);
             tb_searchByProductName.TabIndex = 15;
@@ -180,11 +184,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1295, 166);
+            label4.Location = new Point(1311, 169);
             label4.Name = "label4";
-            label4.Size = new Size(116, 20);
+            label4.Size = new Size(85, 20);
             label4.TabIndex = 20;
-            label4.Text = "Kategori Seçiniz";
+            label4.Text = "Teslim Alan";
             // 
             // label5
             // 
@@ -204,11 +208,52 @@
             label6.TabIndex = 22;
             label6.Text = "Tarih Giriniz";
             // 
+            // btn_export
+            // 
+            btn_export.Location = new Point(1107, 14);
+            btn_export.Name = "btn_export";
+            btn_export.Size = new Size(115, 50);
+            btn_export.TabIndex = 23;
+            btn_export.Text = "Export";
+            btn_export.UseVisualStyleBackColor = true;
+            btn_export.Click += btn_export_Click;
+            // 
+            // dtp_start
+            // 
+            dtp_start.Location = new Point(512, 35);
+            dtp_start.Name = "dtp_start";
+            dtp_start.Size = new Size(250, 27);
+            dtp_start.TabIndex = 24;
+            dtp_start.ValueChanged += dtp_start_ValueChanged;
+            // 
+            // dtp_end
+            // 
+            dtp_end.Location = new Point(782, 35);
+            dtp_end.Name = "dtp_end";
+            dtp_end.Size = new Size(250, 27);
+            dtp_end.TabIndex = 25;
+            dtp_end.ValueChanged += dtp_end_ValueChanged;
+            // 
+            // button1
+            // 
+            button1.BackgroundImage = Properties.Resources.reflesh_icon;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Location = new Point(1038, 22);
+            button1.Name = "button1";
+            button1.Size = new Size(41, 42);
+            button1.TabIndex = 26;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // ProductSalePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 953);
+            Controls.Add(button1);
+            Controls.Add(dtp_end);
+            Controls.Add(dtp_start);
+            Controls.Add(btn_export);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -255,5 +300,9 @@
         private Label label4;
         private Label label5;
         private Label label6;
+        private Button btn_export;
+        private DateTimePicker dtp_start;
+        private DateTimePicker dtp_end;
+        private Button button1;
     }
 }

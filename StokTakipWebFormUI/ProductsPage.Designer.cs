@@ -41,6 +41,7 @@
             dtp_dateAdded = new DateTimePicker();
             button1 = new Button();
             btn_deleteProduct = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgw_productsList).BeginInit();
             SuspendLayout();
             // 
@@ -168,11 +169,22 @@
             btn_deleteProduct.UseVisualStyleBackColor = true;
             btn_deleteProduct.Click += btn_deleteProduct_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(1103, 14);
+            button2.Name = "button2";
+            button2.Size = new Size(119, 52);
+            button2.TabIndex = 14;
+            button2.Text = "Export";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // ProductsPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 953);
+            Controls.Add(button2);
             Controls.Add(btn_deleteProduct);
             Controls.Add(button1);
             Controls.Add(dtp_dateAdded);
@@ -212,5 +224,6 @@
         private DateTimePicker dtp_dateAdded;
         private Button button1;
         private Button btn_deleteProduct;
+        private Button button2;
     }
 }
