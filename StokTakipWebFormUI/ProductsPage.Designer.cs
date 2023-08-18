@@ -46,10 +46,13 @@
             // 
             // dgw_productsList
             // 
+            dgw_productsList.AllowUserToAddRows = false;
+            dgw_productsList.AllowUserToDeleteRows = false;
             dgw_productsList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgw_productsList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgw_productsList.Location = new Point(12, 70);
             dgw_productsList.Name = "dgw_productsList";
+            dgw_productsList.ReadOnly = true;
             dgw_productsList.RowHeadersWidth = 51;
             dgw_productsList.RowTemplate.Height = 29;
             dgw_productsList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -183,10 +186,12 @@
             Controls.Add(tb_searchByProductName);
             Controls.Add(cb_searchByCategoryName);
             Controls.Add(dgw_productsList);
+            KeyPreview = true;
             Name = "ProductsPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ÜRÜNLER";
             Load += Form1_Load;
+            KeyDown += ProductsPage_KeyDown;
             ((System.ComponentModel.ISupportInitialize)dgw_productsList).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -94,6 +94,9 @@ namespace StokTakipWebFormUI
             LoadProducts();
         }
 
-
+        private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
+        {
+            dgv_products.DataSource = _productService.productInventories().Where(p => p.ProductName.ToLower().Contains(tb_searchByProductName.Text)).ToList();
+        }
     }
 }

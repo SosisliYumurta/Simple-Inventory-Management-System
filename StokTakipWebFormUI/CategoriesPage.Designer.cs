@@ -38,10 +38,13 @@
             // 
             // dgv_categoriesList
             // 
+            dgv_categoriesList.AllowUserToAddRows = false;
+            dgv_categoriesList.AllowUserToDeleteRows = false;
             dgv_categoriesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_categoriesList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_categoriesList.Location = new Point(12, 12);
             dgv_categoriesList.Name = "dgv_categoriesList";
+            dgv_categoriesList.ReadOnly = true;
             dgv_categoriesList.RowHeadersWidth = 51;
             dgv_categoriesList.RowTemplate.Height = 29;
             dgv_categoriesList.Size = new Size(1251, 929);
@@ -96,10 +99,12 @@
             Controls.Add(btn_updateCustomer);
             Controls.Add(btn_categoryAdd);
             Controls.Add(dgv_categoriesList);
+            KeyPreview = true;
             Name = "CategoriesPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KATEGORİLER";
             Load += CategoriesPage_Load;
+            KeyDown += CategoriesPage_KeyDown;
             ((System.ComponentModel.ISupportInitialize)dgv_categoriesList).EndInit();
             ResumeLayout(false);
             PerformLayout();

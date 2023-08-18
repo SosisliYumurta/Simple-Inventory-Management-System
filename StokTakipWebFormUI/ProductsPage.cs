@@ -24,6 +24,16 @@ namespace StokTakipWebFormUI
             //LoadCategory();
             LoadCategoryForAdding();
             dgw_productsList.Columns[0].Visible = false;
+            ChangeColumsName();
+        }
+        private void ChangeColumsName()
+        {
+            dgw_productsList.Columns["ProductId"].HeaderText = "Ürün Id";
+            dgw_productsList.Columns["ProductName"].HeaderText = "Ürün Ýsmi";
+            dgw_productsList.Columns["CategoryName"].HeaderText = "Ürün Kategori Ýsmi";
+            dgw_productsList.Columns["StockQuantity"].HeaderText = "Ürün Stok Miktarý";
+            dgw_productsList.Columns["DateAdded"].HeaderText = "Ürün Eklenme Tarihi";
+            dgw_productsList.Columns["UnitPrice"].HeaderText = "Ürün Birim Fiyatý";
         }
         void LoadCategoryForAdding()
         {
@@ -59,7 +69,7 @@ namespace StokTakipWebFormUI
         private void btn_productAdd_Click(object sender, EventArgs e)
         {
             try
-            {             
+            {
                 _productService.Add(new Product
                 {
                     CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
@@ -96,7 +106,7 @@ namespace StokTakipWebFormUI
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
-            }          
+            }
         }
 
         private void dgw_productsList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -128,6 +138,14 @@ namespace StokTakipWebFormUI
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ProductsPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

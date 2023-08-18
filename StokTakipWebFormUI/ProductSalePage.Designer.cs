@@ -41,22 +41,27 @@
             tb_searchByProductName = new TextBox();
             btn_deleteProductSale = new Button();
             btn_updateProductSale = new Button();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).BeginInit();
             SuspendLayout();
             // 
             // btn_sell
             // 
-            btn_sell.Location = new Point(1297, 254);
+            btn_sell.Location = new Point(1303, 452);
             btn_sell.Name = "btn_sell";
             btn_sell.Size = new Size(108, 48);
             btn_sell.TabIndex = 0;
             btn_sell.Text = "Teslim Et";
             btn_sell.UseVisualStyleBackColor = true;
             btn_sell.Click += btn_sell_Click;
+            btn_sell.KeyDown += btn_sell_KeyDown;
             // 
             // tb_quantity
             // 
-            tb_quantity.Location = new Point(1228, 163);
+            tb_quantity.Location = new Point(1228, 306);
             tb_quantity.Name = "tb_quantity";
             tb_quantity.PlaceholderText = "Miktar";
             tb_quantity.Size = new Size(242, 27);
@@ -66,7 +71,7 @@
             // 
             cb_products.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_products.FormattingEnabled = true;
-            cb_products.Location = new Point(1228, 70);
+            cb_products.Location = new Point(1228, 114);
             cb_products.Name = "cb_products";
             cb_products.Size = new Size(242, 28);
             cb_products.TabIndex = 2;
@@ -75,7 +80,7 @@
             // 
             cb_customers.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_customers.FormattingEnabled = true;
-            cb_customers.Location = new Point(1228, 115);
+            cb_customers.Location = new Point(1228, 210);
             cb_customers.Name = "cb_customers";
             cb_customers.Size = new Size(242, 28);
             cb_customers.TabIndex = 3;
@@ -104,7 +109,7 @@
             // 
             // dtp_dateProductSale
             // 
-            dtp_dateProductSale.Location = new Point(1228, 207);
+            dtp_dateProductSale.Location = new Point(1228, 401);
             dtp_dateProductSale.Name = "dtp_dateProductSale";
             dtp_dateProductSale.Size = new Size(242, 27);
             dtp_dateProductSale.TabIndex = 12;
@@ -145,7 +150,7 @@
             // 
             // btn_deleteProductSale
             // 
-            btn_deleteProductSale.Location = new Point(1297, 374);
+            btn_deleteProductSale.Location = new Point(1303, 597);
             btn_deleteProductSale.Name = "btn_deleteProductSale";
             btn_deleteProductSale.Size = new Size(108, 49);
             btn_deleteProductSale.TabIndex = 18;
@@ -155,7 +160,7 @@
             // 
             // btn_updateProductSale
             // 
-            btn_updateProductSale.Location = new Point(1297, 308);
+            btn_updateProductSale.Location = new Point(1303, 524);
             btn_updateProductSale.Name = "btn_updateProductSale";
             btn_updateProductSale.Size = new Size(108, 49);
             btn_updateProductSale.TabIndex = 17;
@@ -163,11 +168,51 @@
             btn_updateProductSale.UseVisualStyleBackColor = true;
             btn_updateProductSale.Click += btn_updateProductSale_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1303, 70);
+            label3.Name = "label3";
+            label3.Size = new Size(93, 20);
+            label3.TabIndex = 19;
+            label3.Text = "Ürün Seçiniz.";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1295, 166);
+            label4.Name = "label4";
+            label4.Size = new Size(116, 20);
+            label4.TabIndex = 20;
+            label4.Text = "Kategori Seçiniz";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(1275, 262);
+            label5.Name = "label5";
+            label5.Size = new Size(156, 20);
+            label5.TabIndex = 21;
+            label5.Text = "Teslim Edilecek Miktar";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(1303, 357);
+            label6.Name = "label6";
+            label6.Size = new Size(86, 20);
+            label6.TabIndex = 22;
+            label6.Text = "Tarih Giriniz";
+            // 
             // ProductSalePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 953);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(btn_deleteProductSale);
             Controls.Add(btn_updateProductSale);
             Controls.Add(label2);
@@ -206,5 +251,9 @@
         private TextBox tb_searchByProductName;
         private Button btn_deleteProductSale;
         private Button btn_updateProductSale;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
     }
 }

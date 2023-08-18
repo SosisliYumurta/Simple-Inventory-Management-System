@@ -40,6 +40,8 @@
             ms_categories = new ToolStripMenuItem();
             ms_productsSales = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
+            label1 = new Label();
+            tb_searchByProductName = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgv_products).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -47,7 +49,7 @@
             // btn_products
             // 
             btn_products.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_products.Location = new Point(855, 225);
+            btn_products.Location = new Point(823, 407);
             btn_products.Name = "btn_products";
             btn_products.Size = new Size(166, 47);
             btn_products.TabIndex = 0;
@@ -83,25 +85,26 @@
             // btn_productSale
             // 
             btn_productSale.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_productSale.Location = new Point(855, 82);
+            btn_productSale.Location = new Point(12, 39);
             btn_productSale.Name = "btn_productSale";
             btn_productSale.Size = new Size(166, 46);
             btn_productSale.TabIndex = 3;
             btn_productSale.Text = "VERİLEN ÜRÜNLER";
             btn_productSale.UseVisualStyleBackColor = true;
-            btn_productSale.Visible = false;
             btn_productSale.Click += btn_productSale_Click;
             // 
             // dgv_products
             // 
+            dgv_products.AllowUserToAddRows = false;
+            dgv_products.AllowUserToDeleteRows = false;
             dgv_products.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_products.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_products.Dock = DockStyle.Fill;
-            dgv_products.Location = new Point(0, 28);
+            dgv_products.Location = new Point(12, 87);
             dgv_products.Name = "dgv_products";
+            dgv_products.ReadOnly = true;
             dgv_products.RowHeadersWidth = 51;
             dgv_products.RowTemplate.Height = 29;
-            dgv_products.Size = new Size(1033, 521);
+            dgv_products.Size = new Size(1878, 878);
             dgv_products.TabIndex = 4;
             // 
             // menuStrip1
@@ -110,7 +113,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menu_strip_tools, toolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1033, 28);
+            menuStrip1.Size = new Size(1902, 28);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -156,11 +159,30 @@
             toolStripMenuItem1.Size = new Size(34, 24);
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(347, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(115, 20);
+            label1.TabIndex = 7;
+            label1.Text = "Ürün Adı Arama";
+            // 
+            // tb_searchByProductName
+            // 
+            tb_searchByProductName.Location = new Point(299, 49);
+            tb_searchByProductName.Name = "tb_searchByProductName";
+            tb_searchByProductName.Size = new Size(209, 27);
+            tb_searchByProductName.TabIndex = 6;
+            tb_searchByProductName.TextChanged += tb_searchByProductName_TextChanged;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1033, 549);
+            ClientSize = new Size(1902, 1033);
+            Controls.Add(label1);
+            Controls.Add(tb_searchByProductName);
             Controls.Add(dgv_products);
             Controls.Add(btn_productSale);
             Controls.Add(btn_customers);
@@ -170,10 +192,8 @@
             MainMenuStrip = menuStrip1;
             Name = "MainPage";
             ShowIcon = false;
-            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ANA SAYFA";
-            WindowState = FormWindowState.Maximized;
             Load += MainPage_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_products).EndInit();
             menuStrip1.ResumeLayout(false);
@@ -196,5 +216,7 @@
         private ToolStripMenuItem ms_categories;
         private ToolStripMenuItem ms_productsSales;
         private ToolStripMenuItem toolStripMenuItem1;
+        private Label label1;
+        private TextBox tb_searchByProductName;
     }
 }

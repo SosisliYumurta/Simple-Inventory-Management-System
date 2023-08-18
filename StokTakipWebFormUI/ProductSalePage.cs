@@ -46,6 +46,10 @@ namespace StokTakipWebFormUI
                 MessageBox.Show("Ürün teslim edildi");
                 LoadDataGridView();
             }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception exception)
             {
 
@@ -62,8 +66,25 @@ namespace StokTakipWebFormUI
             LoadProducts();
             LoadCustomers();
             LoadDataGridView();
+            ChangeColumsNames();
+            HideClomunsName();
 
         }
+
+        private void HideClomunsName()
+        {
+            dgv_saleDetails.Columns["SaleId"].Visible = false;
+        }
+
+        private void ChangeColumsNames()
+        {
+            dgv_saleDetails.Columns["ProductName"].HeaderText = "Ürün İsmi";
+            dgv_saleDetails.Columns["CustomerName"].HeaderText = "Müşteri İsmi";
+            dgv_saleDetails.Columns["CompanyName"].HeaderText = "Firma İsmi";
+            dgv_saleDetails.Columns["Quantity"].HeaderText = "Teslim Edilen Miktar";
+            dgv_saleDetails.Columns["Date"].HeaderText = "Teslim Edilme Tarihi";
+        }
+
         void LoadDataGridView()
         {
             dgv_saleDetails.DataSource = _saleService.GetSalesDetails();
@@ -95,8 +116,13 @@ namespace StokTakipWebFormUI
 
         private void btn_updateProductSale_Click(object sender, EventArgs e)
         {
+
             try
             {
+                int total = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[4].Value) - Convert.ToInt32(tb_quantity.Text);
+                var product = _productService.GetProduct(Convert.ToInt32(cb_products.SelectedValue));
+                product.StockQuantity += total;
+                _productService.Update(product);
                 _saleService.Update(new Sale
                 {
                     SaleID = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value),
@@ -152,6 +178,14 @@ namespace StokTakipWebFormUI
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close(); // Formu kapat
+            }
+        }
+
+        private void btn_sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_sell_Click(sender, e);
             }
         }
     }

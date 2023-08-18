@@ -30,6 +30,19 @@ namespace StokTakipWebFormUI
         void LoadCustomers()
         {
             dgv_CustomersList.DataSource = _customerService.GetAll();
+            ChangeColumsName();
+            HideColums();
+        }
+        private void ChangeColumsName()
+        {
+            //dgv_CustomersList.Columns["CustomerId"].HeaderText = "Müşteri Id";
+            dgv_CustomersList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dgv_CustomersList.Columns["CompanyName"].HeaderText = "Firma Adı";
+        }
+        void HideColums()
+        {
+            dgv_CustomersList.Columns["CustomerId"].Visible = false;
+            dgv_CustomersList.Columns["ContactInfo"].Visible = false;
         }
 
         private void btn_cusstomerAdd_Click(object sender, EventArgs e)
@@ -50,7 +63,7 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
         }
 
         private void btn_customerUpdate_Click(object sender, EventArgs e)
@@ -73,7 +86,7 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
         }
 
         private void dgv_CustomersList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -99,7 +112,15 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
+        }
+
+        private void CustomersPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

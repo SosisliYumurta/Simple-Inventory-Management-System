@@ -40,10 +40,13 @@
             // 
             // dgv_CustomersList
             // 
+            dgv_CustomersList.AllowUserToAddRows = false;
+            dgv_CustomersList.AllowUserToDeleteRows = false;
             dgv_CustomersList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_CustomersList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_CustomersList.Location = new Point(12, 12);
             dgv_CustomersList.Name = "dgv_CustomersList";
+            dgv_CustomersList.ReadOnly = true;
             dgv_CustomersList.RowHeadersWidth = 51;
             dgv_CustomersList.RowTemplate.Height = 29;
             dgv_CustomersList.Size = new Size(1199, 929);
@@ -116,10 +119,12 @@
             Controls.Add(btn_customerUpdate);
             Controls.Add(btn_cusstomerAdd);
             Controls.Add(dgv_CustomersList);
+            KeyPreview = true;
             Name = "CustomersPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MÜŞTERİLER";
             Load += CustomersPage_Load;
+            KeyDown += CustomersPage_KeyDown;
             ((System.ComponentModel.ISupportInitialize)dgv_CustomersList).EndInit();
             ResumeLayout(false);
             PerformLayout();

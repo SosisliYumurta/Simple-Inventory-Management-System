@@ -29,8 +29,19 @@ namespace StokTakipWebFormUI
         void LoadCategories()
         {
             dgv_categoriesList.DataSource = _categoryService.GetAll().ToList();
+            ChangeColumnsNames();
+            HideColumnsNames();
         }
+        void ChangeColumnsNames()
+        {
 
+            dgv_categoriesList.Columns["CategoryName"].HeaderText = "Kategori";
+
+        }
+        void HideColumnsNames()
+        {
+            dgv_categoriesList.Columns["CategoryId"].Visible = false;
+        }
         private void btn_categoryAdd_Click(object sender, EventArgs e)
         {
             try
@@ -47,7 +58,7 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
         }
 
         private void btn_updateCustomer_Click(object sender, EventArgs e)
@@ -67,7 +78,7 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
         }
 
         private void btn_deleteCategory_Click(object sender, EventArgs e)
@@ -86,12 +97,20 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show(exception.Message);
             }
-            
+
         }
 
         private void dgv_categoriesList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             tb_CategoryName.Text = dgv_categoriesList.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private void CategoriesPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }
