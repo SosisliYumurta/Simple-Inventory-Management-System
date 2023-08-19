@@ -29,7 +29,6 @@ namespace DataAccess.Concrete.EntityFramework
                                      CompanyName = customer.CompanyName,
                                      Quantity = sale.Quantity,
                                      Date = sale.Date
-                                     
                                  };
                     return result.ToList();
                 }

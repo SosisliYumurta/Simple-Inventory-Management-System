@@ -21,11 +21,17 @@ namespace StokTakipWebFormUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadCategory();
             LoadProducts();
-            //LoadCategory();
+
             LoadCategoryForAdding();
             dgw_productsList.Columns[0].Visible = false;
             ChangeColumsName();
+        }
+
+        void TotalPriceForAllProducts()
+        {
+
         }
         private void ChangeColumsName()
         {
@@ -45,10 +51,11 @@ namespace StokTakipWebFormUI
         void LoadProducts()
         {
             dgw_productsList.DataSource = _productService.GetProductDetail();
+
         }
         void LoadCategory()
         {
-            cb_searchByCategoryName.DataSource = _productService.GetProductDetail().Select(c => c.CategoryName).ToList();
+            cb_searchByCategoryName.DataSource = _categoryService.GetAll().Select(c => c.CategoryName).ToList();
         }
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
@@ -113,11 +120,11 @@ namespace StokTakipWebFormUI
         private void dgw_productsList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgw_productsList.CurrentRow;
-            tb_productName.Text = row.Cells[1].Value.ToString();
-            cb_categoryName.Text = row.Cells[2].Value.ToString();
-            tb_stockQuantity.Text = row.Cells[3].Value.ToString();
-            tb_unitPrice.Text = row.Cells[4].Value.ToString();
-            dtp_dateAdded.Text = row.Cells[5].Value.ToString();
+            tb_productName.Text = row.Cells["ProductName"].Value.ToString();
+            cb_categoryName.Text = row.Cells["CategoryName"].Value.ToString();
+            tb_stockQuantity.Text = row.Cells["StockQuantity"].Value.ToString();
+            tb_unitPrice.Text = row.Cells["UnitPrice"].Value.ToString();
+            dtp_dateAdded.Text = row.Cells["DateAdded"].Value.ToString();
         }
 
         private void btn_deleteProduct_Click(object sender, EventArgs e)
@@ -194,6 +201,28 @@ namespace StokTakipWebFormUI
                     GC.Collect();
                 }
             }
+        }
+
+        private void btn_reflesh_Click(object sender, EventArgs e)
+        {
+            LoadProducts();
+        }
+
+        private void dtp_end_ValueChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+
+        private void dtp_start_ValueChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+        void filter()
+        {
+            DateTime start = dtp_start.Value.AddDays(-1);
+            DateTime end = dtp_end.Value;
+
+            dgw_productsList.DataSource = _productService.GetProductDetail().Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
         }
     }
 }

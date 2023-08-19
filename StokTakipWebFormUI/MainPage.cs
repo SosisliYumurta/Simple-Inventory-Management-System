@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
+using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,15 +44,21 @@ namespace StokTakipWebFormUI
         private void MainPage_Load(object sender, EventArgs e)
         {
             LoadProducts();
-            //dgv_products.Columns[0].Width = -1;
             dgv_products.Columns[0].Visible = false;
-            timer1.Start();
+            //timer1.Start();
 
         }
         public  void LoadProducts()
         {
             dgv_products.DataSource = _productService.productInventories();
             ChangeColumsName();
+            //var productList = _productService.GetAll();
+            //foreach (var product in productList)
+            //{
+            //    product.TotalPrice = product.UnitPrice * product.StockQuantity;
+            //    _productService.Update(product);
+            //}
+            
         }
 
         private void ChangeColumsName()

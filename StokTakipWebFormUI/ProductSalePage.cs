@@ -89,10 +89,10 @@ namespace StokTakipWebFormUI
         }
         void LoadProducts()
         {
-            cb_products.DataSource = _productService.GetAll().ToList();
-            cb_products.ValueMember = "ProductId";
-            cb_products.DisplayMember = "ProductName";
-
+            
+                cb_products.DataSource = _productService.GetAll().ToList();
+                cb_products.ValueMember = "ProductId";
+                cb_products.DisplayMember = "ProductName";
         }
         void LoadCustomers()
         {
@@ -167,10 +167,10 @@ namespace StokTakipWebFormUI
 
         private void dgv_saleDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            cb_products.Text = dgv_saleDetails.CurrentRow.Cells[1].Value.ToString();
-            cb_customers.Text = dgv_saleDetails.CurrentRow.Cells[2].Value.ToString();
-            tb_quantity.Text = dgv_saleDetails.CurrentRow.Cells[4].Value.ToString();
-            dtp_dateProductSale.Text = dgv_saleDetails.CurrentRow.Cells[5].Value.ToString();
+            //cb_products.Text = dgv_saleDetails.CurrentRow.Cells["ProductName"].Value.ToString();
+            //cb_customers.Text = dgv_saleDetails.CurrentRow.Cells["CategoryName"].Value.ToString();
+            //tb_quantity.Text = dgv_saleDetails.CurrentRow.Cells["Quantity"].Value.ToString();
+            //dtp_dateProductSale.Text = dgv_saleDetails.CurrentRow.Cells["Date"].Value.ToString();
         }
 
         private void ProductSalePage_KeyPress(object sender, KeyPressEventArgs e)
@@ -183,16 +183,13 @@ namespace StokTakipWebFormUI
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close(); // Formu kapat
+                this.Close(); 
             }
         }
 
         private void btn_sell_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btn_sell_Click(sender, e);
-            }
+            
         }
 
         private void ProductSalePage_FormClosed(object sender, FormClosedEventArgs e)

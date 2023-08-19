@@ -13,6 +13,7 @@ namespace Entities.Dtos
         public string CategoryName { get; set; }
         public int StockQuantity { get; set; }
         public decimal UnitPrice { get; set; }
+        public decimal TotalPrice { get; set; }
         public string DateAdded { get; set; }
 
     }

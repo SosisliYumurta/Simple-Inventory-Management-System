@@ -29,6 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
                                      CategoryName = c.CategoryName,
                                      StockQuantity = p.StockQuantity,
                                      UnitPrice = p.UnitPrice,
+                                     TotalPrice = p.UnitPrice * p.StockQuantity,
                                      DateAdded = p.DateAdded,
                                      
                                  };
@@ -44,6 +45,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryName = c.CategoryName,
                                  StockQuantity = p.StockQuantity,
                                  UnitPrice = p.UnitPrice,
+                                 TotalPrice = p.UnitPrice * p.StockQuantity,
+
                                  DateAdded = p.DateAdded,
                                  
                              };
