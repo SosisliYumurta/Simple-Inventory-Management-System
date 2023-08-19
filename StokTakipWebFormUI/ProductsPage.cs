@@ -27,11 +27,21 @@ namespace StokTakipWebFormUI
             LoadCategoryForAdding();
             dgw_productsList.Columns[0].Visible = false;
             ChangeColumsName();
+            TotalPriceForAllProducts();
         }
 
         void TotalPriceForAllProducts()
         {
-
+            decimal sum = 0;
+            foreach (DataGridViewRow row in dgw_productsList.Rows)
+            {
+                if (row.Cells["TotalPrice"].Value != null &&
+                    decimal.TryParse(row.Cells["TotalPrice"].Value.ToString(), out decimal value))
+                {
+                    sum += value;
+                }
+            }
+            lbl_totalPrice.Text = sum.ToString();
         }
         private void ChangeColumsName()
         {

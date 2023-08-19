@@ -306,10 +306,10 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(1228, 909);
+            label9.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(1219, 910);
             label9.Name = "label9";
-            label9.Size = new Size(172, 35);
+            label9.Size = new Size(151, 30);
             label9.TabIndex = 30;
             label9.Text = "Toplam Fiyat:";
             label9.UseWaitCursor = true;
@@ -317,10 +317,10 @@
             // lbl_totalPrice
             // 
             lbl_totalPrice.AutoSize = true;
-            lbl_totalPrice.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lbl_totalPrice.Location = new Point(1416, 909);
+            lbl_totalPrice.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl_totalPrice.Location = new Point(1362, 912);
             lbl_totalPrice.Name = "lbl_totalPrice";
-            lbl_totalPrice.Size = new Size(43, 35);
+            lbl_totalPrice.Size = new Size(39, 30);
             lbl_totalPrice.TabIndex = 31;
             lbl_totalPrice.Text = "00";
             lbl_totalPrice.UseWaitCursor = true;
