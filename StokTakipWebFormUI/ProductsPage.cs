@@ -61,16 +61,19 @@ namespace StokTakipWebFormUI
         void LoadProducts()
         {
             dgw_productsList.DataSource = _productService.GetProductDetail();
+            TotalPriceForAllProducts();
 
         }
         void LoadCategory()
         {
             cb_searchByCategoryName.DataSource = _categoryService.GetAll().Select(c => c.CategoryName).ToList();
+            TotalPriceForAllProducts();
         }
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
         {
             dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text);
+            TotalPriceForAllProducts();
         }
 
         private void cb_searchByCategoryName_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,6 +81,7 @@ namespace StokTakipWebFormUI
             try
             {
                 dgw_productsList.DataSource = _productService.GetProductsDetailsByCategoryName(cb_searchByCategoryName.Text);
+                TotalPriceForAllProducts();
             }
             catch
             {
@@ -177,6 +181,7 @@ namespace StokTakipWebFormUI
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string totalPrice = lbl_totalPrice.Text;
             ExportToExcel();
             void ReleaseExcelObject(object obj)
             {
@@ -202,7 +207,7 @@ namespace StokTakipWebFormUI
                     Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                     Workbook workbook = excel.Workbooks.Add(Type.Missing);
                     Worksheet sheet = (Worksheet)workbook.ActiveSheet;
-
+                    sheet.Cells[1, 1] = "Total Price: " + totalPrice;
                     for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
                     {
                         sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
@@ -235,6 +240,7 @@ namespace StokTakipWebFormUI
         private void dtp_end_ValueChanged(object sender, EventArgs e)
         {
             filter();
+
         }
 
         private void dtp_start_ValueChanged(object sender, EventArgs e)
@@ -247,6 +253,7 @@ namespace StokTakipWebFormUI
             DateTime end = dtp_end.Value;
 
             dgw_productsList.DataSource = _productService.GetProductDetail().Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
+            TotalPriceForAllProducts();
         }
     }
 }

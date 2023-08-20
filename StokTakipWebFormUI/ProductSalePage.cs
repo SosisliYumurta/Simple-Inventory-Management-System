@@ -89,10 +89,10 @@ namespace StokTakipWebFormUI
         }
         void LoadProducts()
         {
-            
-                cb_products.DataSource = _productService.GetAll().ToList();
-                cb_products.ValueMember = "ProductId";
-                cb_products.DisplayMember = "ProductName";
+
+            cb_products.DataSource = _productService.GetAll().ToList();
+            cb_products.ValueMember = "ProductId";
+            cb_products.DisplayMember = "ProductName";
         }
         void LoadCustomers()
         {
@@ -147,6 +147,9 @@ namespace StokTakipWebFormUI
         {
             try
             {
+                //int total = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[4].Value) - Convert.ToInt32(tb_quantity.Text);
+                var product = _productService.GetProduct(Convert.ToInt32(cb_products.SelectedValue));
+                product.StockQuantity += Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells["Quantity"].Value);
                 if (MessageBox.Show("Seçili teslimatı silmek istediğinizden emin misiniz?", "Teslimat Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int saleId = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value);
@@ -157,6 +160,8 @@ namespace StokTakipWebFormUI
                     MessageBox.Show("Teslimat Silindi");
                     LoadDataGridView();
                 }
+
+                _productService.Update(product);
             }
             catch (NullReferenceException)
             {
@@ -187,13 +192,13 @@ namespace StokTakipWebFormUI
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close(); 
+                this.Close();
             }
         }
 
         private void btn_sell_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
         }
 
         private void ProductSalePage_FormClosed(object sender, FormClosedEventArgs e)

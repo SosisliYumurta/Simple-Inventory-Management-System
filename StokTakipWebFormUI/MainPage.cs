@@ -48,7 +48,7 @@ namespace StokTakipWebFormUI
             //timer1.Start();
 
         }
-        public  void LoadProducts()
+        public void LoadProducts()
         {
             dgv_products.DataSource = _productService.productInventories();
             ChangeColumsName();
@@ -58,7 +58,7 @@ namespace StokTakipWebFormUI
             //    product.TotalPrice = product.UnitPrice * product.StockQuantity;
             //    _productService.Update(product);
             //}
-            
+
         }
 
         private void ChangeColumsName()

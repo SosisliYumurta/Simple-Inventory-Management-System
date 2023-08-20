@@ -117,7 +117,7 @@
             // 
             // btn_productAdd
             // 
-            btn_productAdd.Location = new Point(1297, 476);
+            btn_productAdd.Location = new Point(1296, 409);
             btn_productAdd.Name = "btn_productAdd";
             btn_productAdd.Size = new Size(108, 49);
             btn_productAdd.TabIndex = 5;
@@ -165,7 +165,7 @@
             // 
             // dtp_dateAdded
             // 
-            dtp_dateAdded.Location = new Point(1230, 439);
+            dtp_dateAdded.Location = new Point(1229, 372);
             dtp_dateAdded.Name = "dtp_dateAdded";
             dtp_dateAdded.Size = new Size(242, 27);
             dtp_dateAdded.TabIndex = 11;
@@ -173,7 +173,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1297, 535);
+            button1.Location = new Point(1296, 468);
             button1.Name = "button1";
             button1.Size = new Size(108, 49);
             button1.TabIndex = 12;
@@ -184,7 +184,7 @@
             // 
             // btn_deleteProduct
             // 
-            btn_deleteProduct.Location = new Point(1297, 594);
+            btn_deleteProduct.Location = new Point(1296, 527);
             btn_deleteProduct.Name = "btn_deleteProduct";
             btn_deleteProduct.Size = new Size(108, 49);
             btn_deleteProduct.TabIndex = 13;
@@ -206,12 +206,13 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(1230, 372);
+            textBox1.Location = new Point(1230, 691);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Toplam Fiyat";
             textBox1.Size = new Size(242, 27);
             textBox1.TabIndex = 15;
             textBox1.UseWaitCursor = true;
+            textBox1.Visible = false;
             // 
             // label3
             // 
@@ -256,17 +257,18 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(1304, 342);
+            label7.Location = new Point(1304, 661);
             label7.Name = "label7";
             label7.Size = new Size(94, 20);
             label7.TabIndex = 20;
             label7.Text = "Toplam Fiyat";
             label7.UseWaitCursor = true;
+            label7.Visible = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(1331, 409);
+            label8.Location = new Point(1330, 342);
             label8.Name = "label8";
             label8.Size = new Size(40, 20);
             label8.TabIndex = 21;
