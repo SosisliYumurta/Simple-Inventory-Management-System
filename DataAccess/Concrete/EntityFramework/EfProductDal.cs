@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -16,41 +14,25 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (StokTakipContext context = new StokTakipContext())
             {
+                var query = from p in context.Products
+                            join c in context.Categories on p.CategoryId equals c.CategoryId
+                            select new ProductDetailDto
+                            {
+                                ProductId = p.ProductId,
+                                ProductName = p.ProductName,
+                                CategoryName = c.CategoryName,
+                                StockQuantity = p.StockQuantity,
+                                UnitPrice = p.UnitPrice,
+                                TotalPrice = p.UnitPrice * p.StockQuantity,
+                                DateAdded = p.DateAdded
+                            };
 
-                if (filter == null)
+                if (filter != null)
                 {
-                    var result = from p in context.Products
-                                 join c in context.Categories
-                                 on p.CategoryId equals c.CategoryId
-                                 select new ProductDetailDto
-                                 {
-                                     ProductId = p.ProductId,
-                                     ProductName = p.ProductName,
-                                     CategoryName = c.CategoryName,
-                                     StockQuantity = p.StockQuantity,
-                                     UnitPrice = p.UnitPrice,
-                                     TotalPrice = p.UnitPrice * p.StockQuantity,
-                                     DateAdded = p.DateAdded,
-                                     
-                                 };
-                    return result.ToList();
+                    query = query.Where(filter);
                 }
-                var resultWithFilter = from p in context.Products
-                             join c in context.Categories
-                             on p.CategoryId equals c.CategoryId
-                             select new ProductDetailDto
-                             {
-                                 ProductId = p.ProductId,
-                                 ProductName = p.ProductName,
-                                 CategoryName = c.CategoryName,
-                                 StockQuantity = p.StockQuantity,
-                                 UnitPrice = p.UnitPrice,
-                                 TotalPrice = p.UnitPrice * p.StockQuantity,
 
-                                 DateAdded = p.DateAdded,
-                                 
-                             };
-                return resultWithFilter.Where(filter).ToList();
+                return query.ToList();
             }
         }
 
@@ -58,17 +40,16 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (StokTakipContext context = new StokTakipContext())
             {
-                var result = from p in context.Products
-                             join c in context.Categories
-                             on p.CategoryId equals c.CategoryId
-                             select new ProductInventoryDto
-                             {
-                                 ProductId = p.ProductId,
-                                 ProductName = p.ProductName,
-                                 StockQuantity = p.StockQuantity,
-                                 
-                             };
-                return result.ToList();
+                var query = from p in context.Products
+                            join c in context.Categories on p.CategoryId equals c.CategoryId
+                            select new ProductInventoryDto
+                            {
+                                ProductId = p.ProductId,
+                                ProductName = p.ProductName,
+                                StockQuantity = p.StockQuantity
+                            };
+
+                return query.ToList();
             }
         }
     }

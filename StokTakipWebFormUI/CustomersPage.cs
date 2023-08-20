@@ -100,20 +100,27 @@ namespace StokTakipWebFormUI
         {
             try
             {
-                _customerService.Delete(new Customer
+                if (MessageBox.Show("Seçili müşteriyi silmek istediğinizden emin misiniz?", "Müşteri Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    CustomerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value)
-                });
-                MessageBox.Show("Müşteri Silindi");
-                LoadCustomers();
+                    int customerId = Convert.ToInt32(dgv_CustomersList.CurrentRow.Cells[0].Value);
+                    _customerService.Delete(new Customer
+                    {
+                        CustomerId = customerId
+                    });
+                    MessageBox.Show("Müşteri Silindi");
+                    LoadCustomers();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Seçilecek öğe bulunamadı veya seçim yapmadınız");
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
-
         }
+
 
         private void CustomersPage_KeyDown(object sender, KeyEventArgs e)
         {

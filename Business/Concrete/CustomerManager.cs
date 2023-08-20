@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Utilities;
+using Business.ValidationRules.FluentValidation;
 using DataAccess.Abstract;
 using Entities;
 using System;
@@ -18,6 +20,7 @@ namespace Business.Concrete
         }
         public void Add(Customer customer)
         {
+            ValidationTool.Validate(new CustomerValidator(), customer);
             _customerDal.Add(customer);
         }
 
@@ -33,6 +36,7 @@ namespace Business.Concrete
 
         public void Update(Customer customer)
         {
+            ValidationTool.Validate(new CustomerValidator(), customer);
             _customerDal.Update(customer);
         }
 

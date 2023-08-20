@@ -147,23 +147,27 @@ namespace StokTakipWebFormUI
         {
             try
             {
-                _saleService.Delete(new Sale
+                if (MessageBox.Show("Seçili teslimatı silmek istediğinizden emin misiniz?", "Teslimat Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    SaleID = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value),
-                });
-                MessageBox.Show("Teslimat Silindi");
-                LoadDataGridView();
+                    int saleId = Convert.ToInt32(dgv_saleDetails.CurrentRow.Cells[0].Value);
+                    _saleService.Delete(new Sale
+                    {
+                        SaleID = saleId,
+                    });
+                    MessageBox.Show("Teslimat Silindi");
+                    LoadDataGridView();
+                }
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 MessageBox.Show("Seçilecek öğe bulunamadı veya seçim yapmadınız");
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
         }
+
 
         private void dgv_saleDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {

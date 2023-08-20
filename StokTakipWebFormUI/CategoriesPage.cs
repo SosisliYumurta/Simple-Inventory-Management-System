@@ -85,20 +85,27 @@ namespace StokTakipWebFormUI
         {
             try
             {
-                _categoryService.Delete(new Category
+                if (MessageBox.Show("Seçili kategoriyi silmek istediğinizden emin misiniz?", "Kategori Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    CategoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value)
-                });
-                MessageBox.Show("Kategori Silindi");
-                LoadCategories();
+                    int categoryId = Convert.ToInt32(dgv_categoriesList.CurrentRow.Cells[0].Value);
+                    _categoryService.Delete(new Category
+                    {
+                        CategoryId = categoryId
+                    });
+                    MessageBox.Show("Kategori Silindi");
+                    LoadCategories();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Seçilecek öğe bulunamadı veya seçim yapmadınız");
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
-
         }
+
 
         private void dgv_categoriesList_CellClick(object sender, DataGridViewCellEventArgs e)
         {

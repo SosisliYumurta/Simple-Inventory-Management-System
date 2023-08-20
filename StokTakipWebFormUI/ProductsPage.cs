@@ -141,18 +141,27 @@ namespace StokTakipWebFormUI
         {
             try
             {
-                _productService.Delete(new Product
+                if (MessageBox.Show("Seçili ürünü silmek istediðinizden emin misiniz?", "Ürün Silme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
-                });
-                MessageBox.Show("Ürün silindi");
-                LoadProducts();
+                    int productId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value);
+                    _productService.Delete(new Product
+                    {
+                        ProductId = productId,
+                    });
+                    MessageBox.Show("Ürün silindi");
+                    LoadProducts();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Seçilecek öðe bulunamadý veya seçim yapmadýnýz");
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -168,33 +177,7 @@ namespace StokTakipWebFormUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dgw_productsList.Columns.Count > 0)
-            {
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                Workbook workbook = excel.Workbooks.Add(Type.Missing);
-                Worksheet sheet = (Worksheet)workbook.ActiveSheet;
-
-                for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
-                {
-                    sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
-                }
-
-                for (int i = 0; i < dgw_productsList.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dgw_productsList.Columns.Count; j++)
-                    {
-                        sheet.Cells[i + 2, j + 1] = dgw_productsList.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-
-                sheet.Columns.AutoFit();
-                excel.Visible = true;
-
-                ReleaseExcelObject(sheet);
-                ReleaseExcelObject(workbook);
-                ReleaseExcelObject(excel);
-
-            }
+            ExportToExcel();
             void ReleaseExcelObject(object obj)
             {
                 try
@@ -209,6 +192,37 @@ namespace StokTakipWebFormUI
                 finally
                 {
                     GC.Collect();
+                }
+            }
+
+            void ExportToExcel()
+            {
+                if (dgw_productsList.Columns.Count > 0)
+                {
+                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                    Workbook workbook = excel.Workbooks.Add(Type.Missing);
+                    Worksheet sheet = (Worksheet)workbook.ActiveSheet;
+
+                    for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
+                    {
+                        sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
+                    }
+
+                    for (int i = 0; i < dgw_productsList.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgw_productsList.Columns.Count; j++)
+                        {
+                            sheet.Cells[i + 2, j + 1] = dgw_productsList.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+
+                    sheet.Columns.AutoFit();
+                    excel.Visible = true;
+
+                    ReleaseExcelObject(sheet);
+                    ReleaseExcelObject(workbook);
+                    ReleaseExcelObject(excel);
+
                 }
             }
         }
