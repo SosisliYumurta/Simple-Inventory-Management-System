@@ -18,7 +18,7 @@ namespace StokTakipWebFormUI
         private ICustomerService _customerService;
 
         private bool isAscending = true;
-        
+
         public CustomersPage()
         {
             InitializeComponent();
@@ -146,12 +146,12 @@ namespace StokTakipWebFormUI
 
             switch (e.ColumnIndex)
             {
-                case 1: 
+                case 1:
                     sortedList = (isAscending)
                         ? _customerService.GetAll().OrderBy(item => item.CustomerName).ToList()
                         : _customerService.GetAll().OrderByDescending(item => item.CustomerName).ToList();
                     break;
-                case 2: 
+                case 2:
                     sortedList = (isAscending)
                         ? _customerService.GetAll().OrderBy(item => item.CompanyName).ToList()
                         : _customerService.GetAll().OrderByDescending(item => item.CompanyName).ToList();

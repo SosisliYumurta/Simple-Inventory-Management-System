@@ -93,7 +93,7 @@ namespace StokTakipWebFormUI
         void LoadProducts()
         {
 
-            cb_products.DataSource = _productService.GetAll().ToList();
+            cb_products.DataSource = _productService.GetAll().OrderBy(p => p.ProductName).ToList();
             cb_products.ValueMember = "ProductId";
             cb_products.DisplayMember = "ProductName";
         }
@@ -103,6 +103,7 @@ namespace StokTakipWebFormUI
             cb_customers.ValueMember = "CustomerId";
             cb_customers.DisplayMember = "CustomerName";
         }
+
 
         private void tb_searchByCustomerName_TextChanged(object sender, EventArgs e)
         {
@@ -332,5 +333,7 @@ namespace StokTakipWebFormUI
 
             dgv_saleDetails.DataSource = sortedList;
         }
+
+
     }
 }

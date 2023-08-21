@@ -25,9 +25,8 @@ namespace StokTakipWebFormUI
         {
             LoadCategory();
             LoadProducts();
-
             LoadCategoryForAdding();
-            dgw_productsList.Columns[0].Visible = false;
+
             ChangeColumsName();
             TotalPriceForAllProducts();
         }
@@ -64,6 +63,7 @@ namespace StokTakipWebFormUI
         void LoadProducts()
         {
             dgw_productsList.DataSource = _productService.GetProductDetail();
+            dgw_productsList.Columns[0].Visible = false;
             TotalPriceForAllProducts();
 
         }
@@ -75,7 +75,7 @@ namespace StokTakipWebFormUI
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
         {
-            dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text);
+            dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text.ToLower());
             TotalPriceForAllProducts();
         }
 
@@ -188,54 +188,30 @@ namespace StokTakipWebFormUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string totalPrice = lbl_totalPrice.Text;
             ExportToExcel();
-            void ReleaseExcelObject(object obj)
+        }
+        void ExportToExcel()
+        {
+            if (dgw_productsList.Columns.Count > 0)
             {
-                try
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = excel.Workbooks.Add(Type.Missing);
+                Worksheet sheet = (Worksheet)workbook.ActiveSheet;
+                for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
                 {
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                    obj = null;
+                    sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
                 }
-                catch (Exception ex)
-                {
-                    obj = null;
-                }
-                finally
-                {
-                    GC.Collect();
-                }
-            }
 
-            void ExportToExcel()
-            {
-                if (dgw_productsList.Columns.Count > 0)
+                for (int i = 0; i < dgw_productsList.Rows.Count; i++)
                 {
-                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                    Workbook workbook = excel.Workbooks.Add(Type.Missing);
-                    Worksheet sheet = (Worksheet)workbook.ActiveSheet;
-                    sheet.Cells[1, 1] = "Total Price: " + totalPrice;
-                    for (int i = 1; i <= dgw_productsList.Columns.Count; i++)
+                    for (int j = 0; j < dgw_productsList.Columns.Count; j++)
                     {
-                        sheet.Cells[1, i] = dgw_productsList.Columns[i - 1].HeaderText;
+                        sheet.Cells[i + 2, j + 1] = dgw_productsList.Rows[i].Cells[j].Value.ToString();
                     }
-
-                    for (int i = 0; i < dgw_productsList.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dgw_productsList.Columns.Count; j++)
-                        {
-                            sheet.Cells[i + 2, j + 1] = dgw_productsList.Rows[i].Cells[j].Value.ToString();
-                        }
-                    }
-
-                    sheet.Columns.AutoFit();
-                    excel.Visible = true;
-
-                    ReleaseExcelObject(sheet);
-                    ReleaseExcelObject(workbook);
-                    ReleaseExcelObject(excel);
-
                 }
+
+                sheet.Columns.AutoFit();
+                excel.Visible = true;
             }
         }
 
@@ -271,31 +247,31 @@ namespace StokTakipWebFormUI
 
             switch (e.ColumnIndex)
             {
-                case 1: 
+                case 1:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.ProductName).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.ProductName).ToList();
                     break;
 
-                case 2: 
+                case 2:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.CategoryName).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.CategoryName).ToList();
                     break;
 
-                case 3: 
+                case 3:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.StockQuantity).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.StockQuantity).ToList();
                     break;
 
-                case 4: 
+                case 4:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.UnitPrice).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.UnitPrice).ToList();
                     break;
 
-                case 5: 
+                case 5:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.TotalPrice).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.TotalPrice).ToList();
