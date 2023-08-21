@@ -12,12 +12,13 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //string dbName = "stokTakipDb.db"; // Veritabanı dosya adı
-            //string dbFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Db"); // "Db" klasörünün yolu
-            //string dbPath = Path.Combine(dbFolderPath, dbName); // "Db" klasörünün içindeki veritabanı yolu
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\Casper\Desktop\StokTakip\Db\stokTakipDb.db");
 
-            //optionsBuilder.UseSqlite("DataSource=.\\Db\\stokTakipDb.db");
+            //optionsBuilder.UseSqlite(@"Data Source=C:\Users\Casper\Desktop\StokTakip\Db\stokTakipDb.db");
+            string appFolderPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            string dbPath = Path.Combine(appFolderPath, "stokTakipDb.db"); // SQLite veritabanı dosyasının yolu ve adı
+            
+            optionsBuilder.UseSqlite($"Data Source={dbPath}");
+
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }

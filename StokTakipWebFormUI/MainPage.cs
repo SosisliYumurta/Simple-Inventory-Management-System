@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace StokTakipWebFormUI
 {
     public partial class MainPage : Form
     {
+        private bool isAscending = true;
+
         IProductService _productService;
         public MainPage()
         {
@@ -26,6 +29,7 @@ namespace StokTakipWebFormUI
         {
             ProductsPage form = new ProductsPage();
             form.ShowDialog();
+
 
         }
 
@@ -46,11 +50,14 @@ namespace StokTakipWebFormUI
             LoadProducts();
             dgv_products.Columns[0].Visible = false;
             //timer1.Start();
+            pictureBox1.SendToBack();
+            //string appFolderPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            //MessageBox.Show(appFolderPath);
 
         }
         public void LoadProducts()
         {
-            dgv_products.DataSource = _productService.productInventories();
+            dgv_products.DataSource = _productService.productInventories().Where(p => p.StockQuantity != 0).ToList();
             ChangeColumsName();
             //var productList = _productService.GetAll();
             //foreach (var product in productList)
@@ -105,15 +112,9 @@ namespace StokTakipWebFormUI
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
         {
-            if (tb_searchByProductName.Text == null)
-            {
-                timer1.Start();
-            }
-            else
-            {
-                timer1.Stop();
-            }
+
             dgv_products.DataSource = _productService.productInventories().Where(p => p.ProductName.ToLower().Contains(tb_searchByProductName.Text)).ToList();
+            LoadProducts();
         }
 
         private void ms_products1_Click(object sender, EventArgs e)
@@ -137,6 +138,54 @@ namespace StokTakipWebFormUI
         private void timer1_Tick(object sender, EventArgs e)
         {
             LoadProducts();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_products_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            isAscending = !isAscending;
+            if (e.ColumnIndex == 1)
+            {
+                dgv_products.DataSource = (isAscending) ? _productService.productInventories().OrderBy(item => item.ProductName).ToList() :
+                    _productService.productInventories().OrderByDescending(item => item.ProductName).ToList();
+            }
+            else if (e.ColumnIndex == 2)
+            {
+                dgv_products.DataSource = (isAscending) ? _productService.productInventories().OrderBy(item => item.StockQuantity).ToList() :
+                    _productService.productInventories().OrderByDescending(item => item.StockQuantity).ToList();
+            }
+
+        }
+
+        private void dgv_products_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ProductSalePage productSalePage = new ProductSalePage();
+            productSalePage.ShowDialog();
+        }
+
+        private void dgv_products_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Tüm satırlar için
+            {
+                DataGridViewRow row = dgv_products.Rows[e.RowIndex];
+                int stockColumnIndex = 2; // Stok miktarı sütununun indeksi
+
+                if (row.Cells[stockColumnIndex].Value != null && row.Cells[stockColumnIndex].Value != DBNull.Value)
+                {
+                    int stockAmount = Convert.ToInt32(row.Cells[stockColumnIndex].Value);
+
+                    if (stockAmount < 15)
+                    {
+                        //row.DefaultCellStyle.ForeColor = Color.Red; // Satırın metin rengini kırmızı yap
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+            }
         }
     }
 }

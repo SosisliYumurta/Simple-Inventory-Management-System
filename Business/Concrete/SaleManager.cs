@@ -52,12 +52,12 @@ namespace Business.Concrete
 
         public List<SalesDetailsDto> GetSalesDetailsByCustomerName(string customerName)
         {
-            return _saleDal.GetSalesDetails(s => s.CustomerName.ToLower().Contains(customerName));
+            return _saleDal.GetSalesDetails(s => s.CustomerName.ToLower().Contains(customerName.ToLower()));
         }
 
         public List<SalesDetailsDto> GetSalesDetailsByProductName(string productName)
         {
-            return _saleDal.GetSalesDetails(s => s.ProductName.ToLower().Contains(productName));
+            return _saleDal.GetSalesDetails(s => s.ProductName.ToLower().Contains(productName.ToLower()));
         }
 
         

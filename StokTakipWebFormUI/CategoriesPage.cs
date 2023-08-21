@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace StokTakipWebFormUI
     public partial class CategoriesPage : Form
     {
         ICategoryService _categoryService;
+        private bool isAscending = true;
         public CategoriesPage()
         {
             InitializeComponent();
@@ -118,6 +120,31 @@ namespace StokTakipWebFormUI
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                btn_deleteCategory_Click(sender, e);
+            }
+        }
+
+        private void dgv_categoriesList_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            isAscending = !isAscending;
+
+            List<Category> sortedList;
+
+            switch (e.ColumnIndex)
+            {
+                case 1: // ProductName sütunu
+                    sortedList = (isAscending)
+                        ? _categoryService.GetAll().OrderBy(item => item.CategoryName).ToList()
+                        : _categoryService.GetAll().OrderByDescending(item => item.CategoryName).ToList();
+                    break;
+
+                default:
+                    return;
+            }
+
+            dgv_categoriesList.DataSource = sortedList;
         }
     }
 }

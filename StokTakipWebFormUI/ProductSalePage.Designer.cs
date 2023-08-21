@@ -49,16 +49,23 @@
             dtp_start = new DateTimePicker();
             dtp_end = new DateTimePicker();
             button1 = new Button();
+            pictureBox2 = new PictureBox();
+            label11 = new Label();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // btn_sell
             // 
-            btn_sell.Location = new Point(1303, 452);
+            btn_sell.Image = Properties.Resources.Plus;
+            btn_sell.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_sell.Location = new Point(1266, 458);
             btn_sell.Name = "btn_sell";
-            btn_sell.Size = new Size(108, 48);
-            btn_sell.TabIndex = 0;
+            btn_sell.Size = new Size(184, 59);
+            btn_sell.TabIndex = 11;
             btn_sell.Text = "Teslim Et";
+            btn_sell.TextAlign = ContentAlignment.MiddleRight;
             btn_sell.UseVisualStyleBackColor = true;
             btn_sell.Click += btn_sell_Click;
             btn_sell.KeyDown += btn_sell_KeyDown;
@@ -69,7 +76,7 @@
             tb_quantity.Name = "tb_quantity";
             tb_quantity.PlaceholderText = "Miktar";
             tb_quantity.Size = new Size(242, 27);
-            tb_quantity.TabIndex = 1;
+            tb_quantity.TabIndex = 9;
             // 
             // cb_products
             // 
@@ -78,7 +85,7 @@
             cb_products.Location = new Point(1228, 114);
             cb_products.Name = "cb_products";
             cb_products.Size = new Size(242, 28);
-            cb_products.TabIndex = 2;
+            cb_products.TabIndex = 7;
             // 
             // cb_customers
             // 
@@ -87,7 +94,7 @@
             cb_customers.Location = new Point(1228, 210);
             cb_customers.Name = "cb_customers";
             cb_customers.Size = new Size(242, 28);
-            cb_customers.TabIndex = 3;
+            cb_customers.TabIndex = 8;
             // 
             // dgv_saleDetails
             // 
@@ -108,20 +115,21 @@
             dgv_saleDetails.RowTemplate.Height = 29;
             dgv_saleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_saleDetails.Size = new Size(1210, 871);
-            dgv_saleDetails.TabIndex = 5;
+            dgv_saleDetails.TabIndex = 14;
             dgv_saleDetails.CellClick += dgv_saleDetails_CellClick;
+            dgv_saleDetails.ColumnHeaderMouseClick += dgv_saleDetails_ColumnHeaderMouseClick;
             // 
             // dtp_dateProductSale
             // 
             dtp_dateProductSale.Location = new Point(1228, 401);
             dtp_dateProductSale.Name = "dtp_dateProductSale";
             dtp_dateProductSale.Size = new Size(242, 27);
-            dtp_dateProductSale.TabIndex = 12;
+            dtp_dateProductSale.TabIndex = 10;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(53, 14);
+            label1.Location = new Point(342, 16);
             label1.Name = "label1";
             label1.Size = new Size(133, 20);
             label1.TabIndex = 14;
@@ -129,16 +137,16 @@
             // 
             // tb_searchByCustomerName
             // 
-            tb_searchByCustomerName.Location = new Point(12, 37);
+            tb_searchByCustomerName.Location = new Point(301, 37);
             tb_searchByCustomerName.Name = "tb_searchByCustomerName";
             tb_searchByCustomerName.Size = new Size(209, 27);
-            tb_searchByCustomerName.TabIndex = 13;
+            tb_searchByCustomerName.TabIndex = 1;
             tb_searchByCustomerName.TextChanged += tb_searchByCustomerName_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(302, 14);
+            label2.Location = new Point(94, 16);
             label2.Name = "label2";
             label2.Size = new Size(115, 20);
             label2.TabIndex = 16;
@@ -146,29 +154,35 @@
             // 
             // tb_searchByProductName
             // 
-            tb_searchByProductName.Location = new Point(253, 37);
+            tb_searchByProductName.Location = new Point(45, 37);
             tb_searchByProductName.Name = "tb_searchByProductName";
             tb_searchByProductName.Size = new Size(209, 27);
-            tb_searchByProductName.TabIndex = 15;
+            tb_searchByProductName.TabIndex = 2;
             tb_searchByProductName.TextChanged += tb_searchByProductName_TextChanged;
             // 
             // btn_deleteProductSale
             // 
-            btn_deleteProductSale.Location = new Point(1303, 597);
+            btn_deleteProductSale.Image = Properties.Resources.Trash;
+            btn_deleteProductSale.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_deleteProductSale.Location = new Point(1266, 614);
             btn_deleteProductSale.Name = "btn_deleteProductSale";
-            btn_deleteProductSale.Size = new Size(108, 49);
-            btn_deleteProductSale.TabIndex = 18;
+            btn_deleteProductSale.Size = new Size(184, 59);
+            btn_deleteProductSale.TabIndex = 13;
             btn_deleteProductSale.Text = "Teslimatı Sil";
+            btn_deleteProductSale.TextAlign = ContentAlignment.MiddleRight;
             btn_deleteProductSale.UseVisualStyleBackColor = true;
             btn_deleteProductSale.Click += btn_deleteProductSale_Click;
             // 
             // btn_updateProductSale
             // 
-            btn_updateProductSale.Location = new Point(1303, 524);
+            btn_updateProductSale.Image = Properties.Resources.Edit;
+            btn_updateProductSale.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_updateProductSale.Location = new Point(1266, 536);
             btn_updateProductSale.Name = "btn_updateProductSale";
-            btn_updateProductSale.Size = new Size(108, 49);
-            btn_updateProductSale.TabIndex = 17;
+            btn_updateProductSale.Size = new Size(184, 59);
+            btn_updateProductSale.TabIndex = 12;
             btn_updateProductSale.Text = "Teslimatı Güncelle";
+            btn_updateProductSale.TextAlign = ContentAlignment.MiddleRight;
             btn_updateProductSale.UseVisualStyleBackColor = true;
             btn_updateProductSale.Click += btn_updateProductSale_Click;
             // 
@@ -210,46 +224,82 @@
             // 
             // btn_export
             // 
-            btn_export.Location = new Point(1107, 14);
+            btn_export.Image = Properties.Resources.Microsoft_Excel;
+            btn_export.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_export.Location = new Point(1119, 14);
             btn_export.Name = "btn_export";
-            btn_export.Size = new Size(115, 50);
-            btn_export.TabIndex = 23;
+            btn_export.Size = new Size(103, 50);
+            btn_export.TabIndex = 6;
             btn_export.Text = "Export";
+            btn_export.TextAlign = ContentAlignment.MiddleRight;
             btn_export.UseVisualStyleBackColor = true;
             btn_export.Click += btn_export_Click;
             // 
             // dtp_start
             // 
-            dtp_start.Location = new Point(512, 35);
+            dtp_start.Location = new Point(538, 37);
             dtp_start.Name = "dtp_start";
             dtp_start.Size = new Size(250, 27);
-            dtp_start.TabIndex = 24;
+            dtp_start.TabIndex = 3;
             dtp_start.ValueChanged += dtp_start_ValueChanged;
             // 
             // dtp_end
             // 
-            dtp_end.Location = new Point(782, 35);
+            dtp_end.Location = new Point(816, 37);
             dtp_end.Name = "dtp_end";
             dtp_end.Size = new Size(250, 27);
-            dtp_end.TabIndex = 25;
+            dtp_end.TabIndex = 4;
             dtp_end.ValueChanged += dtp_end_ValueChanged;
             // 
             // button1
             // 
-            button1.BackgroundImage = Properties.Resources.reflesh_icon;
+            button1.BackgroundImage = Properties.Resources.Restart;
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(1038, 22);
+            button1.Location = new Point(1072, 37);
             button1.Name = "button1";
-            button1.Size = new Size(41, 42);
-            button1.TabIndex = 26;
+            button1.Size = new Size(41, 29);
+            button1.TabIndex = 5;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.Search;
+            pictureBox2.Location = new Point(12, 37);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 23;
+            pictureBox2.TabStop = false;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(915, 14);
+            label11.Name = "label11";
+            label11.Size = new Size(76, 20);
+            label11.TabIndex = 36;
+            label11.Text = "Bitiş Tarihi";
+            label11.UseWaitCursor = true;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(609, 14);
+            label10.Name = "label10";
+            label10.Size = new Size(111, 20);
+            label10.TabIndex = 35;
+            label10.Text = "Başlangıç Tarihi";
+            label10.UseWaitCursor = true;
             // 
             // ProductSalePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 953);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(pictureBox2);
             Controls.Add(button1);
             Controls.Add(dtp_end);
             Controls.Add(dtp_start);
@@ -278,6 +328,7 @@
             KeyDown += ProductSalePage_KeyDown;
             KeyPress += ProductSalePage_KeyPress;
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -304,5 +355,8 @@
         private DateTimePicker dtp_start;
         private DateTimePicker dtp_end;
         private Button button1;
+        private PictureBox pictureBox2;
+        private Label label11;
+        private Label label10;
     }
 }

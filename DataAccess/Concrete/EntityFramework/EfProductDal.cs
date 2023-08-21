@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                                 ProductId = p.ProductId,
                                 ProductName = p.ProductName,
                                 CategoryName = c.CategoryName,
+                                //FirstQuantityOfStock = p.StockQuantity,
                                 StockQuantity = p.StockQuantity,
                                 UnitPrice = p.UnitPrice,
                                 TotalPrice = p.UnitPrice * p.StockQuantity,

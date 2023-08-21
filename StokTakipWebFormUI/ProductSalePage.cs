@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
 using Entities;
+using Entities.Dtos;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace StokTakipWebFormUI
         IProductService _productService;
         ICategoryService _categoryService;
         ICustomerService _customerService;
+
+        private bool isAscending = true;
         public ProductSalePage()
         {
             InitializeComponent();
@@ -194,6 +197,10 @@ namespace StokTakipWebFormUI
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                btn_deleteProductSale_Click(sender, e);
+            }
         }
 
         private void btn_sell_KeyDown(object sender, KeyEventArgs e)
@@ -279,6 +286,51 @@ namespace StokTakipWebFormUI
         private void dtp_end_ValueChanged(object sender, EventArgs e)
         {
             filter();
+        }
+
+        private void dgv_saleDetails_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            isAscending = !isAscending;
+
+            List<SalesDetailsDto> sortedList;
+
+            switch (e.ColumnIndex)
+            {
+                case 1: // ProductName sütunu
+                    sortedList = (isAscending)
+                        ? _saleService.GetSalesDetails().OrderBy(item => item.ProductName).ToList()
+                        : _saleService.GetSalesDetails().OrderByDescending(item => item.ProductName).ToList();
+                    break;
+
+                case 2: // CustomerName sütunu
+                    sortedList = (isAscending)
+                        ? _saleService.GetSalesDetails().OrderBy(item => item.CustomerName).ToList()
+                        : _saleService.GetSalesDetails().OrderByDescending(item => item.CustomerName).ToList();
+                    break;
+
+                case 3: // CompanyName sütunu
+                    sortedList = (isAscending)
+                        ? _saleService.GetSalesDetails().OrderBy(item => item.CompanyName).ToList()
+                        : _saleService.GetSalesDetails().OrderByDescending(item => item.CompanyName).ToList();
+                    break;
+
+                case 4: // Quantity sütunu
+                    sortedList = (isAscending)
+                        ? _saleService.GetSalesDetails().OrderBy(item => item.Quantity).ToList()
+                        : _saleService.GetSalesDetails().OrderByDescending(item => item.Quantity).ToList();
+                    break;
+
+                case 5: // Date sütunu
+                    sortedList = (isAscending)
+                        ? _saleService.GetSalesDetails().OrderBy(item => DateTime.Parse(item.Date)).ToList()
+                        : _saleService.GetSalesDetails().OrderByDescending(item => DateTime.Parse(item.Date)).ToList();
+                    break;
+
+                default:
+                    return;
+            }
+
+            dgv_saleDetails.DataSource = sortedList;
         }
     }
 }

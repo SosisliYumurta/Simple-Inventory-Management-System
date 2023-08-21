@@ -52,36 +52,46 @@
             dgv_CustomersList.RowHeadersWidth = 51;
             dgv_CustomersList.RowTemplate.Height = 29;
             dgv_CustomersList.Size = new Size(1199, 929);
-            dgv_CustomersList.TabIndex = 1;
+            dgv_CustomersList.TabIndex = 0;
             dgv_CustomersList.CellClick += dgv_CustomersList_CellClick;
+            dgv_CustomersList.ColumnHeaderMouseClick += dgv_CustomersList_ColumnHeaderMouseClick;
             // 
             // btn_deleteCustomer
             // 
-            btn_deleteCustomer.Location = new Point(1293, 362);
+            btn_deleteCustomer.Image = Properties.Resources.Trash;
+            btn_deleteCustomer.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_deleteCustomer.Location = new Point(1257, 359);
             btn_deleteCustomer.Name = "btn_deleteCustomer";
-            btn_deleteCustomer.Size = new Size(108, 49);
-            btn_deleteCustomer.TabIndex = 16;
+            btn_deleteCustomer.Size = new Size(177, 59);
+            btn_deleteCustomer.TabIndex = 5;
             btn_deleteCustomer.Text = "Müşteri Sil";
+            btn_deleteCustomer.TextAlign = ContentAlignment.MiddleRight;
             btn_deleteCustomer.UseVisualStyleBackColor = true;
             btn_deleteCustomer.Click += btn_deleteCustomer_Click;
             // 
             // btn_customerUpdate
             // 
-            btn_customerUpdate.Location = new Point(1293, 295);
+            btn_customerUpdate.Image = Properties.Resources.Edit;
+            btn_customerUpdate.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_customerUpdate.Location = new Point(1257, 292);
             btn_customerUpdate.Name = "btn_customerUpdate";
-            btn_customerUpdate.Size = new Size(108, 49);
-            btn_customerUpdate.TabIndex = 15;
+            btn_customerUpdate.Size = new Size(177, 59);
+            btn_customerUpdate.TabIndex = 4;
             btn_customerUpdate.Text = "Müşteri Güncelle";
+            btn_customerUpdate.TextAlign = ContentAlignment.MiddleRight;
             btn_customerUpdate.UseVisualStyleBackColor = true;
             btn_customerUpdate.Click += btn_customerUpdate_Click;
             // 
             // btn_cusstomerAdd
             // 
-            btn_cusstomerAdd.Location = new Point(1293, 228);
+            btn_cusstomerAdd.Image = Properties.Resources.Plus;
+            btn_cusstomerAdd.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_cusstomerAdd.Location = new Point(1257, 225);
             btn_cusstomerAdd.Name = "btn_cusstomerAdd";
-            btn_cusstomerAdd.Size = new Size(108, 49);
-            btn_cusstomerAdd.TabIndex = 14;
+            btn_cusstomerAdd.Size = new Size(177, 59);
+            btn_cusstomerAdd.TabIndex = 3;
             btn_cusstomerAdd.Text = "Müşteri Ekle";
+            btn_cusstomerAdd.TextAlign = ContentAlignment.MiddleRight;
             btn_cusstomerAdd.UseVisualStyleBackColor = true;
             btn_cusstomerAdd.Click += btn_cusstomerAdd_Click;
             // 
@@ -91,7 +101,7 @@
             tb_customerName.Name = "tb_customerName";
             tb_customerName.PlaceholderText = "Müşteri Adı";
             tb_customerName.Size = new Size(253, 27);
-            tb_customerName.TabIndex = 17;
+            tb_customerName.TabIndex = 1;
             // 
             // tb_customerContactInfo
             // 
@@ -108,7 +118,7 @@
             tb_companyName.Name = "tb_companyName";
             tb_companyName.PlaceholderText = "Firma Adı";
             tb_companyName.Size = new Size(253, 27);
-            tb_companyName.TabIndex = 19;
+            tb_companyName.TabIndex = 2;
             // 
             // label1
             // 

@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public List<ProductDetailDto> GetProdcutsDetailsByProductName(string productName)
         {
-            return _productDal.GetProductDetails(p => p.ProductName.ToLower().Contains(productName)).ToList();
+            return _productDal.GetProductDetails(p => p.ProductName.ToLower().Contains(productName.ToLower())).ToList();
         }
 
         public Product GetProduct(int id)

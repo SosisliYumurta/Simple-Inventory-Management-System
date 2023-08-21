@@ -50,6 +50,7 @@
             dgv_categoriesList.Size = new Size(1251, 929);
             dgv_categoriesList.TabIndex = 0;
             dgv_categoriesList.CellClick += dgv_categoriesList_CellClick;
+            dgv_categoriesList.ColumnHeaderMouseClick += dgv_categoriesList_ColumnHeaderMouseClick;
             // 
             // tb_CategoryName
             // 
@@ -57,35 +58,44 @@
             tb_CategoryName.Name = "tb_CategoryName";
             tb_CategoryName.PlaceholderText = "Kategori Adı";
             tb_CategoryName.Size = new Size(201, 27);
-            tb_CategoryName.TabIndex = 23;
+            tb_CategoryName.TabIndex = 1;
             // 
             // btn_deleteCategory
             // 
-            btn_deleteCategory.Location = new Point(1320, 253);
+            btn_deleteCategory.Image = Properties.Resources.Trash;
+            btn_deleteCategory.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_deleteCategory.Location = new Point(1280, 245);
             btn_deleteCategory.Name = "btn_deleteCategory";
-            btn_deleteCategory.Size = new Size(108, 49);
-            btn_deleteCategory.TabIndex = 21;
+            btn_deleteCategory.Size = new Size(181, 59);
+            btn_deleteCategory.TabIndex = 4;
             btn_deleteCategory.Text = "Kategori Sil";
+            btn_deleteCategory.TextAlign = ContentAlignment.MiddleRight;
             btn_deleteCategory.UseVisualStyleBackColor = true;
             btn_deleteCategory.Click += btn_deleteCategory_Click;
             // 
             // btn_updateCustomer
             // 
-            btn_updateCustomer.Location = new Point(1320, 187);
+            btn_updateCustomer.Image = Properties.Resources.Edit;
+            btn_updateCustomer.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_updateCustomer.Location = new Point(1280, 185);
             btn_updateCustomer.Name = "btn_updateCustomer";
-            btn_updateCustomer.Size = new Size(108, 49);
-            btn_updateCustomer.TabIndex = 20;
+            btn_updateCustomer.Size = new Size(181, 59);
+            btn_updateCustomer.TabIndex = 3;
             btn_updateCustomer.Text = "Kategori Güncelle";
+            btn_updateCustomer.TextAlign = ContentAlignment.MiddleRight;
             btn_updateCustomer.UseVisualStyleBackColor = true;
             btn_updateCustomer.Click += btn_updateCustomer_Click;
             // 
             // btn_categoryAdd
             // 
-            btn_categoryAdd.Location = new Point(1320, 122);
+            btn_categoryAdd.Image = Properties.Resources.Plus;
+            btn_categoryAdd.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_categoryAdd.Location = new Point(1280, 125);
             btn_categoryAdd.Name = "btn_categoryAdd";
-            btn_categoryAdd.Size = new Size(108, 49);
-            btn_categoryAdd.TabIndex = 19;
+            btn_categoryAdd.Size = new Size(181, 59);
+            btn_categoryAdd.TabIndex = 2;
             btn_categoryAdd.Text = "Kategori Ekle";
+            btn_categoryAdd.TextAlign = ContentAlignment.MiddleRight;
             btn_categoryAdd.UseVisualStyleBackColor = true;
             btn_categoryAdd.Click += btn_categoryAdd_Click;
             // 

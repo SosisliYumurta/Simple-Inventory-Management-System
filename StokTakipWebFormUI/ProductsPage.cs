@@ -2,6 +2,7 @@ using Business.Abstract;
 using Business.DependencyResolvers.Ninject;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
+using Entities.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace StokTakipWebFormUI
 {
     public partial class ProductsPage : Form
     {
+        private bool isAscending = true;
         private IProductService _productService;
         private ICategoryService _categoryService;
         public ProductsPage()
@@ -51,6 +53,7 @@ namespace StokTakipWebFormUI
             dgw_productsList.Columns["StockQuantity"].HeaderText = "Ürün Stok Miktarý";
             dgw_productsList.Columns["DateAdded"].HeaderText = "Ürün Eklenme Tarihi";
             dgw_productsList.Columns["UnitPrice"].HeaderText = "Ürün Birim Fiyatý";
+            dgw_productsList.Columns["TotalPrice"].HeaderText = "Toplam Fiyat";
         }
         void LoadCategoryForAdding()
         {
@@ -177,6 +180,10 @@ namespace StokTakipWebFormUI
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                btn_deleteProduct_Click(sender, e);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -254,6 +261,56 @@ namespace StokTakipWebFormUI
 
             dgw_productsList.DataSource = _productService.GetProductDetail().Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
             TotalPriceForAllProducts();
+        }
+
+        private void dgw_productsList_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            isAscending = !isAscending;
+
+            List<ProductDetailDto> sortedList;
+
+            switch (e.ColumnIndex)
+            {
+                case 1: 
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.ProductName).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.ProductName).ToList();
+                    break;
+
+                case 2: 
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.CategoryName).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.CategoryName).ToList();
+                    break;
+
+                case 3: 
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.StockQuantity).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.StockQuantity).ToList();
+                    break;
+
+                case 4: 
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.UnitPrice).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.UnitPrice).ToList();
+                    break;
+
+                case 5: 
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.TotalPrice).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.TotalPrice).ToList();
+                    break;
+                case 6:
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => DateTime.Parse(item.DateAdded)).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => DateTime.Parse(item.DateAdded)).ToList();
+                    break;
+
+                default:
+                    return;
+            }
+
+            dgw_productsList.DataSource = sortedList;
         }
     }
 }

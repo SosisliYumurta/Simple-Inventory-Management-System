@@ -16,6 +16,9 @@ namespace StokTakipWebFormUI
     public partial class CustomersPage : Form
     {
         private ICustomerService _customerService;
+
+        private bool isAscending = true;
+        
         public CustomersPage()
         {
             InitializeComponent();
@@ -128,6 +131,37 @@ namespace StokTakipWebFormUI
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                btn_deleteCustomer_Click(sender, e);
+            }
+        }
+
+        private void dgv_CustomersList_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            isAscending = !isAscending;
+
+            List<Customer> sortedList;
+
+            switch (e.ColumnIndex)
+            {
+                case 1: 
+                    sortedList = (isAscending)
+                        ? _customerService.GetAll().OrderBy(item => item.CustomerName).ToList()
+                        : _customerService.GetAll().OrderByDescending(item => item.CustomerName).ToList();
+                    break;
+                case 2: 
+                    sortedList = (isAscending)
+                        ? _customerService.GetAll().OrderBy(item => item.CompanyName).ToList()
+                        : _customerService.GetAll().OrderByDescending(item => item.CompanyName).ToList();
+                    break;
+
+                default:
+                    return;
+            }
+
+            dgv_CustomersList.DataSource = sortedList;
         }
     }
 }
