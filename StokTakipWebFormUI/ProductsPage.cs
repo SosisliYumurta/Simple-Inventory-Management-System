@@ -6,6 +6,7 @@ using Entities.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
+using Font = System.Drawing.Font;
 
 namespace StokTakipWebFormUI
 {
@@ -49,7 +50,8 @@ namespace StokTakipWebFormUI
             dgw_productsList.Columns["ProductId"].HeaderText = "Ürün Id";
             dgw_productsList.Columns["ProductName"].HeaderText = "Ürün Ýsmi";
             dgw_productsList.Columns["CategoryName"].HeaderText = "Ürün Kategori Ýsmi";
-            dgw_productsList.Columns["StockQuantity"].HeaderText = "Ürün Stok Miktarý";
+            dgw_productsList.Columns["FirstStock"].HeaderText = "Toplam Stok Miktarý";
+            dgw_productsList.Columns["StockQuantity"].HeaderText = "Kalan Stok Miktarý";
             dgw_productsList.Columns["DateAdded"].HeaderText = "Ürün Eklenme Tarihi";
             dgw_productsList.Columns["UnitPrice"].HeaderText = "Ürün Birim Fiyatý";
             dgw_productsList.Columns["TotalPrice"].HeaderText = "Toplam Fiyat";
@@ -70,7 +72,7 @@ namespace StokTakipWebFormUI
         void LoadCategory()
         {
             cb_searchByCategoryName.DataSource = _categoryService.GetAll().Select(c => c.CategoryName).ToList();
-            TotalPriceForAllProducts();
+            //TotalPriceForAllProducts();
         }
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
@@ -99,6 +101,7 @@ namespace StokTakipWebFormUI
                 {
                     CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
                     ProductName = tb_productName.Text,
+                    FirstStock = Convert.ToInt32(tb_firstStock.Text),
                     StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
                     UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
                     DateAdded = dtp_dateAdded.Text,
@@ -121,6 +124,7 @@ namespace StokTakipWebFormUI
                     ProductId = Convert.ToInt32(dgw_productsList.CurrentRow.Cells[0].Value),
                     ProductName = tb_productName.Text,
                     CategoryId = Convert.ToInt32(cb_categoryName.SelectedValue),
+                    FirstStock = Convert.ToInt32(tb_firstStock.Text),
                     StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
                     UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
                     DateAdded = dtp_dateAdded.Text,
@@ -139,6 +143,7 @@ namespace StokTakipWebFormUI
             var row = dgw_productsList.CurrentRow;
             tb_productName.Text = row.Cells["ProductName"].Value.ToString();
             cb_categoryName.Text = row.Cells["CategoryName"].Value.ToString();
+            tb_firstStock.Text = row.Cells["FirstStock"].Value.ToString();
             tb_stockQuantity.Text = row.Cells["StockQuantity"].Value.ToString();
             tb_unitPrice.Text = row.Cells["UnitPrice"].Value.ToString();
             dtp_dateAdded.Text = row.Cells["DateAdded"].Value.ToString();
@@ -258,25 +263,30 @@ namespace StokTakipWebFormUI
                         ? _productService.GetProductDetail().OrderBy(item => item.CategoryName).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.CategoryName).ToList();
                     break;
-
                 case 3:
+                    sortedList = (isAscending)
+                        ? _productService.GetProductDetail().OrderBy(item => item.FirstStock).ToList()
+                        : _productService.GetProductDetail().OrderByDescending(item => item.FirstStock).ToList();
+                    break;
+
+                case 4:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.StockQuantity).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.StockQuantity).ToList();
                     break;
 
-                case 4:
+                case 5:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.UnitPrice).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.UnitPrice).ToList();
                     break;
 
-                case 5:
+                case 6:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => item.TotalPrice).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => item.TotalPrice).ToList();
                     break;
-                case 6:
+                case 7:
                     sortedList = (isAscending)
                         ? _productService.GetProductDetail().OrderBy(item => DateTime.Parse(item.DateAdded)).ToList()
                         : _productService.GetProductDetail().OrderByDescending(item => DateTime.Parse(item.DateAdded)).ToList();
@@ -287,6 +297,24 @@ namespace StokTakipWebFormUI
             }
 
             dgw_productsList.DataSource = sortedList;
+        }
+
+        private void dgw_productsList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            int columnIndex1 = 3; // 4. sütunun indeksi
+            int columnIndex2 = 6; // 7. sütunun indeksi
+
+            if (e.RowIndex >= 0 && (e.ColumnIndex == columnIndex1 || e.ColumnIndex == columnIndex2))
+            {
+                DataGridViewRow row = dgw_productsList.Rows[e.RowIndex];
+                int value = Convert.ToInt32(row.Cells[e.ColumnIndex].Value);
+
+               
+                    //row.Cells[e.ColumnIndex].Style.ForeColor = Color.Red; // Hücrenin metin rengini kýrmýzý yap
+                    row.Cells[e.ColumnIndex].Style.Font = new Font(dgw_productsList.Font, FontStyle.Bold);
+                
+             
+            }
         }
     }
 }

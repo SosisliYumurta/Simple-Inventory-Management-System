@@ -12,6 +12,7 @@ namespace Entities
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
         public string ProductName { get; set; }
+        public int FirstStock { get; set; }
         public int StockQuantity { get; set; }
         public decimal UnitPrice { get; set; }
         //public decimal TotalPrice { get { return UnitPrice * StockQuantity; } set { TotalPrice = value; } }

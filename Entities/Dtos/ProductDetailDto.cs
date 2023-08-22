@@ -11,7 +11,7 @@ namespace Entities.Dtos
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string CategoryName { get; set; }
-        //public int FirstQuantityOfStock { get; set; }
+        public int FirstStock { get; set; }
         public int StockQuantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }

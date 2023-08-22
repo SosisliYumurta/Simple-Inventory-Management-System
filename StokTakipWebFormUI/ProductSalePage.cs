@@ -180,10 +180,10 @@ namespace StokTakipWebFormUI
 
         private void dgv_saleDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //cb_products.Text = dgv_saleDetails.CurrentRow.Cells["ProductName"].Value.ToString();
-            //cb_customers.Text = dgv_saleDetails.CurrentRow.Cells["CategoryName"].Value.ToString();
-            //tb_quantity.Text = dgv_saleDetails.CurrentRow.Cells["Quantity"].Value.ToString();
-            //dtp_dateProductSale.Text = dgv_saleDetails.CurrentRow.Cells["Date"].Value.ToString();
+            cb_products.Text = dgv_saleDetails.CurrentRow.Cells["ProductName"].Value.ToString();
+            cb_customers.Text = dgv_saleDetails.CurrentRow.Cells["CustomerName"].Value.ToString();
+            tb_quantity.Text = dgv_saleDetails.CurrentRow.Cells["Quantity"].Value.ToString();
+            dtp_dateProductSale.Text = dgv_saleDetails.CurrentRow.Cells["Date"].Value.ToString();
         }
 
         private void ProductSalePage_KeyPress(object sender, KeyPressEventArgs e)

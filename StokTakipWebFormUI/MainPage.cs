@@ -170,22 +170,26 @@ namespace StokTakipWebFormUI
 
         private void dgv_products_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0) // Tüm satırlar için
+            DataGridViewRow row = dgv_products.Rows[e.RowIndex];
+            int columnIndex = 2; // 2. sütunun indeksi
+            int stockAmount = Convert.ToInt32(row.Cells[columnIndex].Value);
+
+            //if (value < 15)
+            //{
+            //    row.Cells[columnIndex].Style.ForeColor = Color.Red; // Hücrenin metin rengini kırmızı yap
+            //    row.Cells[columnIndex].Style.Font = new Font(dgv_products.Font, FontStyle.Bold);
+            //}
+            if (e.Value != null)
             {
-                DataGridViewRow row = dgv_products.Rows[e.RowIndex];
-                int stockColumnIndex = 2; // Stok miktarı sütununun indeksi
-
-                if (row.Cells[stockColumnIndex].Value != null && row.Cells[stockColumnIndex].Value != DBNull.Value)
+                if (stockAmount <= 15)
                 {
-                    int stockAmount = Convert.ToInt32(row.Cells[stockColumnIndex].Value);
-
-                    if (stockAmount < 15)
-                    {
-                        //row.DefaultCellStyle.ForeColor = Color.Red; // Satırın metin rengini kırmızı yap
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
+                    // Hücre içeriği kırmızı yapılıyor
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                 }
+
             }
+
         }
     }
 }
