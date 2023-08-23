@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
 
             //optionsBuilder.UseSqlite(@"Data Source=C:\Users\Casper\Desktop\StokTakip\Db\stokTakipDb.db");
             string appFolderPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            string dbPath = Path.Combine(appFolderPath, "stokTakipDb.db"); // SQLite veritabanı dosyasının yolu ve adı
+            string dbPath = Path.Combine(appFolderPath, "DataBase/stokTakipDb.db"); // SQLite veritabanı dosyasının yolu ve adı
 
             optionsBuilder.UseSqlite($"Data Source={dbPath}");
 

@@ -135,10 +135,10 @@ namespace StokTakipWebFormUI
             categoriesPage.ShowDialog();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            LoadProducts();
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    LoadProducts();
+        //}
 
         private void label1_Click(object sender, EventArgs e)
         {

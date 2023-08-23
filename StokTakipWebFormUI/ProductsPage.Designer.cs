@@ -413,7 +413,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ÜRÜNLER";
             UseWaitCursor = true;
-            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             KeyDown += ProductsPage_KeyDown;
             ((System.ComponentModel.ISupportInitialize)dgw_productsList).EndInit();

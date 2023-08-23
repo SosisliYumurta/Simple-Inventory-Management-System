@@ -90,12 +90,27 @@ namespace StokTakipWebFormUI
         {
             dgv_saleDetails.DataSource = _saleService.GetSalesDetails();
         }
+        public class ProductComboBoxItem
+        {
+            public int ProductId { get; set; }
+            public string ProductName { get; set; }
+            public int StockQuantity { get; set; }
+
+            public override string ToString()
+            {
+                return $"{ProductName} + ({StockQuantity} Adet)";
+            }
+        }
         void LoadProducts()
         {
 
             cb_products.DataSource = _productService.GetAll().OrderBy(p => p.ProductName).ToList();
             cb_products.ValueMember = "ProductId";
             cb_products.DisplayMember = "ProductName";
+
+           
+
+
         }
         void LoadCustomers()
         {

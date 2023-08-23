@@ -13,6 +13,7 @@ namespace StokTakipWebFormUI
     public partial class ProductsPage : Form
     {
         private bool isAscending = true;
+        private bool isDateActive = false;
         private IProductService _productService;
         private ICategoryService _categoryService;
         public ProductsPage()
@@ -62,8 +63,9 @@ namespace StokTakipWebFormUI
             cb_categoryName.ValueMember = "CategoryId";
             cb_categoryName.DisplayMember = "CategoryName";
         }
-        void LoadProducts()
+        void  LoadProducts()
         {
+            
             dgw_productsList.DataSource = _productService.GetProductDetail();
             dgw_productsList.Columns[0].Visible = false;
             TotalPriceForAllProducts();
@@ -72,13 +74,24 @@ namespace StokTakipWebFormUI
         void LoadCategory()
         {
             cb_searchByCategoryName.DataSource = _categoryService.GetAll().Select(c => c.CategoryName).ToList();
-            //TotalPriceForAllProducts();
+            TotalPriceForAllProducts();
         }
 
         private void tb_searchByProductName_TextChanged(object sender, EventArgs e)
         {
-            dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text.ToLower());
-            TotalPriceForAllProducts();
+
+            if (dtp_start.Value.ToString() == dtp_end.Value.ToString())
+            {
+                dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text.ToLower());
+                TotalPriceForAllProducts();
+            }
+            //dgw_productsList.DataSource = _productService.GetProdcutsDetailsByProductName(tb_searchByProductName.Text.ToLower());
+            //TotalPriceForAllProducts();
+            else
+            {
+                filter();
+            }
+
         }
 
         private void cb_searchByCategoryName_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,10 +187,7 @@ namespace StokTakipWebFormUI
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void ProductsPage_KeyDown(object sender, KeyEventArgs e)
         {
@@ -222,6 +232,9 @@ namespace StokTakipWebFormUI
 
         private void btn_reflesh_Click(object sender, EventArgs e)
         {
+            
+            dtp_end.Text = DateTime.Now.ToString();
+            dtp_start.Text = DateTime.Now.ToString();
             LoadProducts();
         }
 
@@ -237,11 +250,36 @@ namespace StokTakipWebFormUI
         }
         void filter()
         {
+            //DateTime start = dtp_start.Value.AddDays(-1);
+            //DateTime end = dtp_end.Value;
+
+            //dgw_productsList.DataSource = _productService.GetProductDetail().Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
+            //TotalPriceForAllProducts();
+            //***************************
+
             DateTime start = dtp_start.Value.AddDays(-1);
             DateTime end = dtp_end.Value;
 
-            dgw_productsList.DataSource = _productService.GetProductDetail().Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
+            string productNameFilter = tb_searchByProductName.Text.ToLower();
+
+            var products = _productService.GetProductDetail();
+
+
+            if (!string.IsNullOrWhiteSpace(productNameFilter))
+            {
+                products = products.Where(p => p.ProductName.ToLower().Contains(productNameFilter)).ToList();
+            }
+
+            products = products.Where(p => DateTime.Parse(p.DateAdded) >= start && DateTime.Parse(p.DateAdded) < end).ToList();
+
+
+            dgw_productsList.DataSource = products;
             TotalPriceForAllProducts();
+
+
+
+
+
         }
 
         private void dgw_productsList_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -309,11 +347,11 @@ namespace StokTakipWebFormUI
                 DataGridViewRow row = dgw_productsList.Rows[e.RowIndex];
                 int value = Convert.ToInt32(row.Cells[e.ColumnIndex].Value);
 
-               
-                    //row.Cells[e.ColumnIndex].Style.ForeColor = Color.Red; // Hücrenin metin rengini kırmızı yap
-                    row.Cells[e.ColumnIndex].Style.Font = new Font(dgw_productsList.Font, FontStyle.Bold);
-                
-             
+
+                //row.Cells[e.ColumnIndex].Style.ForeColor = Color.Red; // Hücrenin metin rengini kırmızı yap
+                row.Cells[e.ColumnIndex].Style.Font = new Font(dgw_productsList.Font, FontStyle.Bold);
+
+
             }
         }
     }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btn_sell = new Button();
             tb_quantity = new TextBox();
             cb_products = new ComboBox();
@@ -60,10 +60,9 @@
             // 
             btn_sell.Image = Properties.Resources.Plus;
             btn_sell.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_sell.Location = new Point(1108, 344);
-            btn_sell.Margin = new Padding(3, 2, 3, 2);
+            btn_sell.Location = new Point(1266, 459);
             btn_sell.Name = "btn_sell";
-            btn_sell.Size = new Size(161, 44);
+            btn_sell.Size = new Size(184, 59);
             btn_sell.TabIndex = 11;
             btn_sell.Text = "Teslim Et";
             btn_sell.TextAlign = ContentAlignment.MiddleRight;
@@ -73,31 +72,28 @@
             // 
             // tb_quantity
             // 
-            tb_quantity.Location = new Point(1074, 230);
-            tb_quantity.Margin = new Padding(3, 2, 3, 2);
+            tb_quantity.Location = new Point(1227, 307);
             tb_quantity.Name = "tb_quantity";
             tb_quantity.PlaceholderText = "Miktar";
-            tb_quantity.Size = new Size(212, 23);
+            tb_quantity.Size = new Size(242, 27);
             tb_quantity.TabIndex = 9;
             // 
             // cb_products
             // 
             cb_products.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_products.FormattingEnabled = true;
-            cb_products.Location = new Point(1074, 86);
-            cb_products.Margin = new Padding(3, 2, 3, 2);
+            cb_products.Location = new Point(1227, 115);
             cb_products.Name = "cb_products";
-            cb_products.Size = new Size(212, 23);
+            cb_products.Size = new Size(242, 28);
             cb_products.TabIndex = 7;
             // 
             // cb_customers
             // 
             cb_customers.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_customers.FormattingEnabled = true;
-            cb_customers.Location = new Point(1074, 158);
-            cb_customers.Margin = new Padding(3, 2, 3, 2);
+            cb_customers.Location = new Point(1227, 211);
             cb_customers.Name = "cb_customers";
-            cb_customers.Size = new Size(212, 23);
+            cb_customers.Size = new Size(242, 28);
             cb_customers.TabIndex = 8;
             // 
             // dgv_saleDetails
@@ -105,66 +101,62 @@
             dgv_saleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_saleDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv_saleDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_saleDetails.DefaultCellStyle = dataGridViewCellStyle2;
-            dgv_saleDetails.Location = new Point(10, 52);
-            dgv_saleDetails.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_saleDetails.DefaultCellStyle = dataGridViewCellStyle1;
+            dgv_saleDetails.Location = new Point(11, 69);
             dgv_saleDetails.Name = "dgv_saleDetails";
             dgv_saleDetails.RowHeadersWidth = 51;
             dgv_saleDetails.RowTemplate.Height = 29;
             dgv_saleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv_saleDetails.Size = new Size(1059, 584);
+            dgv_saleDetails.Size = new Size(1210, 779);
             dgv_saleDetails.TabIndex = 14;
             dgv_saleDetails.CellClick += dgv_saleDetails_CellClick;
             dgv_saleDetails.ColumnHeaderMouseClick += dgv_saleDetails_ColumnHeaderMouseClick;
             // 
             // dtp_dateProductSale
             // 
-            dtp_dateProductSale.Location = new Point(1074, 301);
-            dtp_dateProductSale.Margin = new Padding(3, 2, 3, 2);
+            dtp_dateProductSale.Location = new Point(1227, 401);
             dtp_dateProductSale.Name = "dtp_dateProductSale";
-            dtp_dateProductSale.Size = new Size(212, 23);
+            dtp_dateProductSale.Size = new Size(242, 27);
             dtp_dateProductSale.TabIndex = 10;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(298, 12);
+            label1.Location = new Point(341, 16);
             label1.Name = "label1";
-            label1.Size = new Size(106, 15);
+            label1.Size = new Size(133, 20);
             label1.TabIndex = 14;
             label1.Text = "Müşteri Adı Arama";
             // 
             // tb_searchByCustomerName
             // 
-            tb_searchByCustomerName.Location = new Point(262, 28);
-            tb_searchByCustomerName.Margin = new Padding(3, 2, 3, 2);
+            tb_searchByCustomerName.Location = new Point(299, 37);
             tb_searchByCustomerName.Name = "tb_searchByCustomerName";
-            tb_searchByCustomerName.Size = new Size(183, 23);
+            tb_searchByCustomerName.Size = new Size(209, 27);
             tb_searchByCustomerName.TabIndex = 1;
             tb_searchByCustomerName.TextChanged += tb_searchByCustomerName_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(82, 12);
+            label2.Location = new Point(94, 16);
             label2.Name = "label2";
-            label2.Size = new Size(92, 15);
+            label2.Size = new Size(115, 20);
             label2.TabIndex = 16;
             label2.Text = "Ürün Adı Arama";
             // 
             // tb_searchByProductName
             // 
-            tb_searchByProductName.Location = new Point(39, 28);
-            tb_searchByProductName.Margin = new Padding(3, 2, 3, 2);
+            tb_searchByProductName.Location = new Point(45, 37);
             tb_searchByProductName.Name = "tb_searchByProductName";
-            tb_searchByProductName.Size = new Size(183, 23);
+            tb_searchByProductName.Size = new Size(209, 27);
             tb_searchByProductName.TabIndex = 2;
             tb_searchByProductName.TextChanged += tb_searchByProductName_TextChanged;
             // 
@@ -172,10 +164,9 @@
             // 
             btn_deleteProductSale.Image = Properties.Resources.Trash;
             btn_deleteProductSale.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_deleteProductSale.Location = new Point(1108, 460);
-            btn_deleteProductSale.Margin = new Padding(3, 2, 3, 2);
+            btn_deleteProductSale.Location = new Point(1266, 613);
             btn_deleteProductSale.Name = "btn_deleteProductSale";
-            btn_deleteProductSale.Size = new Size(161, 44);
+            btn_deleteProductSale.Size = new Size(184, 59);
             btn_deleteProductSale.TabIndex = 13;
             btn_deleteProductSale.Text = "Teslimatı Sil";
             btn_deleteProductSale.TextAlign = ContentAlignment.MiddleRight;
@@ -186,10 +177,9 @@
             // 
             btn_updateProductSale.Image = Properties.Resources.Edit;
             btn_updateProductSale.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_updateProductSale.Location = new Point(1108, 402);
-            btn_updateProductSale.Margin = new Padding(3, 2, 3, 2);
+            btn_updateProductSale.Location = new Point(1266, 536);
             btn_updateProductSale.Name = "btn_updateProductSale";
-            btn_updateProductSale.Size = new Size(161, 44);
+            btn_updateProductSale.Size = new Size(184, 59);
             btn_updateProductSale.TabIndex = 12;
             btn_updateProductSale.Text = "Teslimatı Güncelle";
             btn_updateProductSale.TextAlign = ContentAlignment.MiddleRight;
@@ -199,36 +189,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1140, 52);
+            label3.Location = new Point(1303, 69);
             label3.Name = "label3";
-            label3.Size = new Size(75, 15);
+            label3.Size = new Size(93, 20);
             label3.TabIndex = 19;
             label3.Text = "Ürün Seçiniz.";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1147, 127);
+            label4.Location = new Point(1311, 169);
             label4.Name = "label4";
-            label4.Size = new Size(67, 15);
+            label4.Size = new Size(85, 20);
             label4.TabIndex = 20;
             label4.Text = "Teslim Alan";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(1116, 196);
+            label5.Location = new Point(1275, 261);
             label5.Name = "label5";
-            label5.Size = new Size(123, 15);
+            label5.Size = new Size(156, 20);
             label5.TabIndex = 21;
             label5.Text = "Teslim Edilecek Miktar";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(1140, 268);
+            label6.Location = new Point(1303, 357);
             label6.Name = "label6";
-            label6.Size = new Size(68, 15);
+            label6.Size = new Size(86, 20);
             label6.TabIndex = 22;
             label6.Text = "Tarih Giriniz";
             // 
@@ -236,10 +226,9 @@
             // 
             btn_export.Image = Properties.Resources.Microsoft_Excel;
             btn_export.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_export.Location = new Point(979, 13);
-            btn_export.Margin = new Padding(3, 2, 3, 2);
+            btn_export.Location = new Point(1119, 17);
             btn_export.Name = "btn_export";
-            btn_export.Size = new Size(90, 38);
+            btn_export.Size = new Size(103, 51);
             btn_export.TabIndex = 6;
             btn_export.Text = "Export";
             btn_export.TextAlign = ContentAlignment.MiddleRight;
@@ -248,19 +237,17 @@
             // 
             // dtp_start
             // 
-            dtp_start.Location = new Point(456, 28);
-            dtp_start.Margin = new Padding(3, 2, 3, 2);
+            dtp_start.Location = new Point(521, 37);
             dtp_start.Name = "dtp_start";
-            dtp_start.Size = new Size(219, 23);
+            dtp_start.Size = new Size(250, 27);
             dtp_start.TabIndex = 3;
             dtp_start.ValueChanged += dtp_start_ValueChanged;
             // 
             // dtp_end
             // 
-            dtp_end.Location = new Point(700, 28);
-            dtp_end.Margin = new Padding(3, 2, 3, 2);
+            dtp_end.Location = new Point(800, 37);
             dtp_end.Name = "dtp_end";
-            dtp_end.Size = new Size(219, 23);
+            dtp_end.Size = new Size(250, 27);
             dtp_end.TabIndex = 4;
             dtp_end.ValueChanged += dtp_end_ValueChanged;
             // 
@@ -268,10 +255,9 @@
             // 
             button1.BackgroundImage = Properties.Resources.Restart;
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(925, 29);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(1057, 39);
             button1.Name = "button1";
-            button1.Size = new Size(36, 22);
+            button1.Size = new Size(41, 29);
             button1.TabIndex = 5;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -279,10 +265,9 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.Search;
-            pictureBox2.Location = new Point(10, 28);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(11, 37);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 20);
+            pictureBox2.Size = new Size(27, 27);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 23;
             pictureBox2.TabStop = false;
@@ -290,9 +275,9 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(786, 11);
+            label11.Location = new Point(898, 15);
             label11.Name = "label11";
-            label11.Size = new Size(60, 15);
+            label11.Size = new Size(76, 20);
             label11.TabIndex = 36;
             label11.Text = "Bitiş Tarihi";
             label11.UseWaitCursor = true;
@@ -300,18 +285,18 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(518, 11);
+            label10.Location = new Point(592, 15);
             label10.Name = "label10";
-            label10.Size = new Size(88, 15);
+            label10.Size = new Size(111, 20);
             label10.TabIndex = 35;
             label10.Text = "Başlangıç Tarihi";
             label10.UseWaitCursor = true;
             // 
             // ProductSalePage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1297, 715);
+            ClientSize = new Size(1482, 953);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(pictureBox2);
@@ -336,11 +321,9 @@
             Controls.Add(tb_quantity);
             Controls.Add(btn_sell);
             KeyPreview = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ProductSalePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TESLİM EDİLEN ÜRÜNLER";
-            WindowState = FormWindowState.Maximized;
             Load += ProductSalePage_Load;
             KeyDown += ProductSalePage_KeyDown;
             KeyPress += ProductSalePage_KeyPress;

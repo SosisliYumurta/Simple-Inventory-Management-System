@@ -42,34 +42,31 @@
             dgv_categoriesList.AllowUserToDeleteRows = false;
             dgv_categoriesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_categoriesList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_categoriesList.Location = new Point(10, 9);
-            dgv_categoriesList.Margin = new Padding(3, 2, 3, 2);
+            dgv_categoriesList.Location = new Point(11, 12);
             dgv_categoriesList.Name = "dgv_categoriesList";
             dgv_categoriesList.ReadOnly = true;
             dgv_categoriesList.RowHeadersWidth = 51;
             dgv_categoriesList.RowTemplate.Height = 29;
-            dgv_categoriesList.Size = new Size(1095, 697);
+            dgv_categoriesList.Size = new Size(1251, 929);
             dgv_categoriesList.TabIndex = 0;
             dgv_categoriesList.CellClick += dgv_categoriesList_CellClick;
             dgv_categoriesList.ColumnHeaderMouseClick += dgv_categoriesList_ColumnHeaderMouseClick;
             // 
             // tb_CategoryName
             // 
-            tb_CategoryName.Location = new Point(1110, 58);
-            tb_CategoryName.Margin = new Padding(3, 2, 3, 2);
+            tb_CategoryName.Location = new Point(1269, 77);
             tb_CategoryName.Name = "tb_CategoryName";
             tb_CategoryName.PlaceholderText = "Kategori Adı";
-            tb_CategoryName.Size = new Size(176, 23);
+            tb_CategoryName.Size = new Size(201, 27);
             tb_CategoryName.TabIndex = 1;
             // 
             // btn_deleteCategory
             // 
             btn_deleteCategory.Image = Properties.Resources.Trash;
             btn_deleteCategory.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_deleteCategory.Location = new Point(1120, 184);
-            btn_deleteCategory.Margin = new Padding(3, 2, 3, 2);
+            btn_deleteCategory.Location = new Point(1280, 245);
             btn_deleteCategory.Name = "btn_deleteCategory";
-            btn_deleteCategory.Size = new Size(158, 44);
+            btn_deleteCategory.Size = new Size(181, 59);
             btn_deleteCategory.TabIndex = 4;
             btn_deleteCategory.Text = "Kategori Sil";
             btn_deleteCategory.TextAlign = ContentAlignment.MiddleRight;
@@ -80,10 +77,9 @@
             // 
             btn_updateCustomer.Image = Properties.Resources.Edit;
             btn_updateCustomer.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_updateCustomer.Location = new Point(1120, 139);
-            btn_updateCustomer.Margin = new Padding(3, 2, 3, 2);
+            btn_updateCustomer.Location = new Point(1280, 185);
             btn_updateCustomer.Name = "btn_updateCustomer";
-            btn_updateCustomer.Size = new Size(158, 44);
+            btn_updateCustomer.Size = new Size(181, 59);
             btn_updateCustomer.TabIndex = 3;
             btn_updateCustomer.Text = "Kategori Güncelle";
             btn_updateCustomer.TextAlign = ContentAlignment.MiddleRight;
@@ -94,10 +90,9 @@
             // 
             btn_categoryAdd.Image = Properties.Resources.Plus;
             btn_categoryAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_categoryAdd.Location = new Point(1120, 94);
-            btn_categoryAdd.Margin = new Padding(3, 2, 3, 2);
+            btn_categoryAdd.Location = new Point(1280, 125);
             btn_categoryAdd.Name = "btn_categoryAdd";
-            btn_categoryAdd.Size = new Size(158, 44);
+            btn_categoryAdd.Size = new Size(181, 59);
             btn_categoryAdd.TabIndex = 2;
             btn_categoryAdd.Text = "Kategori Ekle";
             btn_categoryAdd.TextAlign = ContentAlignment.MiddleRight;
@@ -106,20 +101,18 @@
             // 
             // CategoriesPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1297, 715);
+            ClientSize = new Size(1482, 953);
             Controls.Add(tb_CategoryName);
             Controls.Add(btn_deleteCategory);
             Controls.Add(btn_updateCustomer);
             Controls.Add(btn_categoryAdd);
             Controls.Add(dgv_categoriesList);
             KeyPreview = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CategoriesPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KATEGORİLER";
-            WindowState = FormWindowState.Maximized;
             Load += CategoriesPage_Load;
             KeyDown += CategoriesPage_KeyDown;
             ((System.ComponentModel.ISupportInitialize)dgv_categoriesList).EndInit();
