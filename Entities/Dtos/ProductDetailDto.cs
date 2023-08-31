@@ -16,6 +16,7 @@ namespace Entities.Dtos
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public string DateAdded { get; set; }
+        public string Note { get; set; }
 
     }
 }

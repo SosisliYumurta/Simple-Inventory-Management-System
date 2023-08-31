@@ -57,6 +57,7 @@
             label11 = new Label();
             label7 = new Label();
             tb_firstStock = new TextBox();
+            tb_note = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgw_productsList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -125,7 +126,7 @@
             btn_productAdd.BackgroundImageLayout = ImageLayout.Stretch;
             btn_productAdd.Image = Properties.Resources.Plus;
             btn_productAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_productAdd.Location = new Point(1268, 500);
+            btn_productAdd.Location = new Point(1269, 565);
             btn_productAdd.Name = "btn_productAdd";
             btn_productAdd.Size = new Size(168, 59);
             btn_productAdd.TabIndex = 11;
@@ -137,7 +138,7 @@
             // 
             // tb_productName
             // 
-            tb_productName.Location = new Point(1230, 104);
+            tb_productName.Location = new Point(1230, 50);
             tb_productName.Name = "tb_productName";
             tb_productName.PlaceholderText = "Ürün İsmi";
             tb_productName.Size = new Size(242, 27);
@@ -148,7 +149,7 @@
             // 
             cb_categoryName.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_categoryName.FormattingEnabled = true;
-            cb_categoryName.Location = new Point(1230, 173);
+            cb_categoryName.Location = new Point(1230, 119);
             cb_categoryName.Name = "cb_categoryName";
             cb_categoryName.Size = new Size(242, 28);
             cb_categoryName.TabIndex = 7;
@@ -156,7 +157,7 @@
             // 
             // tb_stockQuantity
             // 
-            tb_stockQuantity.Location = new Point(1228, 312);
+            tb_stockQuantity.Location = new Point(1228, 258);
             tb_stockQuantity.Name = "tb_stockQuantity";
             tb_stockQuantity.PlaceholderText = "Miktar";
             tb_stockQuantity.Size = new Size(242, 27);
@@ -165,7 +166,7 @@
             // 
             // tb_unitPrice
             // 
-            tb_unitPrice.Location = new Point(1229, 386);
+            tb_unitPrice.Location = new Point(1229, 332);
             tb_unitPrice.Name = "tb_unitPrice";
             tb_unitPrice.PlaceholderText = "Birim Fiyatı";
             tb_unitPrice.Size = new Size(242, 27);
@@ -174,7 +175,7 @@
             // 
             // dtp_dateAdded
             // 
-            dtp_dateAdded.Location = new Point(1228, 455);
+            dtp_dateAdded.Location = new Point(1228, 401);
             dtp_dateAdded.Name = "dtp_dateAdded";
             dtp_dateAdded.Size = new Size(242, 27);
             dtp_dateAdded.TabIndex = 10;
@@ -184,7 +185,7 @@
             // 
             button1.Image = Properties.Resources.Edit;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(1268, 570);
+            button1.Location = new Point(1269, 635);
             button1.Name = "button1";
             button1.Size = new Size(168, 59);
             button1.TabIndex = 12;
@@ -198,7 +199,7 @@
             // 
             btn_deleteProduct.Image = Properties.Resources.Trash;
             btn_deleteProduct.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_deleteProduct.Location = new Point(1268, 640);
+            btn_deleteProduct.Location = new Point(1269, 705);
             btn_deleteProduct.Name = "btn_deleteProduct";
             btn_deleteProduct.Size = new Size(168, 59);
             btn_deleteProduct.TabIndex = 13;
@@ -225,7 +226,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1317, 73);
+            label3.Location = new Point(1317, 19);
             label3.Name = "label3";
             label3.Size = new Size(71, 20);
             label3.TabIndex = 16;
@@ -235,7 +236,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1318, 142);
+            label4.Location = new Point(1318, 88);
             label4.Name = "label4";
             label4.Size = new Size(66, 20);
             label4.TabIndex = 17;
@@ -245,7 +246,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(1296, 212);
+            label5.Location = new Point(1296, 158);
             label5.Name = "label5";
             label5.Size = new Size(92, 20);
             label5.TabIndex = 18;
@@ -255,7 +256,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(1290, 355);
+            label6.Location = new Point(1290, 301);
             label6.Name = "label6";
             label6.Size = new Size(118, 20);
             label6.TabIndex = 19;
@@ -265,7 +266,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(1329, 424);
+            label8.Location = new Point(1329, 370);
             label8.Name = "label8";
             label8.Size = new Size(40, 20);
             label8.TabIndex = 21;
@@ -358,7 +359,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(1286, 281);
+            label7.Location = new Point(1286, 227);
             label7.Name = "label7";
             label7.Size = new Size(129, 20);
             label7.TabIndex = 36;
@@ -367,18 +368,29 @@
             // 
             // tb_firstStock
             // 
-            tb_firstStock.Location = new Point(1228, 243);
+            tb_firstStock.Location = new Point(1228, 189);
             tb_firstStock.Name = "tb_firstStock";
             tb_firstStock.PlaceholderText = "Miktar";
             tb_firstStock.Size = new Size(242, 27);
             tb_firstStock.TabIndex = 35;
             tb_firstStock.UseWaitCursor = true;
             // 
+            // tb_note
+            // 
+            tb_note.Location = new Point(1228, 445);
+            tb_note.Multiline = true;
+            tb_note.Name = "tb_note";
+            tb_note.PlaceholderText = "Açıklama";
+            tb_note.Size = new Size(242, 102);
+            tb_note.TabIndex = 37;
+            tb_note.UseWaitCursor = true;
+            // 
             // ProductsPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 843);
+            Controls.Add(tb_note);
             Controls.Add(label7);
             Controls.Add(tb_firstStock);
             Controls.Add(label11);
@@ -452,5 +464,6 @@
         private Label label11;
         private Label label7;
         private TextBox tb_firstStock;
+        private TextBox tb_note;
     }
 }

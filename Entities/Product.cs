@@ -18,5 +18,6 @@ namespace Entities
         //public decimal TotalPrice { get { return UnitPrice * StockQuantity; } set { TotalPrice = value; } }
         //public decimal TotalPrice { get; set; }
         public string DateAdded { get; set; }
+        public string Note { get; set; }
     }
 }

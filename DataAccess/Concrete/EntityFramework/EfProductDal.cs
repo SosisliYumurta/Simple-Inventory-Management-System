@@ -25,7 +25,9 @@ namespace DataAccess.Concrete.EntityFramework
                                 StockQuantity = p.StockQuantity,
                                 UnitPrice = p.UnitPrice,
                                 TotalPrice = p.UnitPrice * p.FirstStock,
-                                DateAdded = p.DateAdded
+                                DateAdded = p.DateAdded,
+                                Note = p.Note,
+                                
                             };
 
                 if (filter != null)

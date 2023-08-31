@@ -49,6 +49,7 @@ namespace StokTakipWebFormUI
 
                 MessageBox.Show("Ürün teslim edildi");
                 LoadDataGridView();
+                LoadProducts();
             }
 
             catch (Exception exception)
@@ -103,18 +104,13 @@ namespace StokTakipWebFormUI
         }
         void LoadProducts()
         {
-
-            cb_products.DataSource = _productService.GetAll().OrderBy(p => p.ProductName).ToList();
+            cb_products.DataSource = _productService.GetAll().Where(p => p.StockQuantity != 0).OrderBy(p => p.ProductName).ToList();
             cb_products.ValueMember = "ProductId";
             cb_products.DisplayMember = "ProductName";
-
-           
-
-
         }
         void LoadCustomers()
         {
-            cb_customers.DataSource = _customerService.GetAll().ToList();
+            cb_customers.DataSource = _customerService.GetAll().OrderBy(p => p.CustomerName).ToList();
             cb_customers.ValueMember = "CustomerId";
             cb_customers.DisplayMember = "CustomerName";
         }
@@ -151,6 +147,7 @@ namespace StokTakipWebFormUI
                 });
                 MessageBox.Show("Teslimat bilgisi Güncellendi");
                 LoadDataGridView();
+                LoadProducts();
             }
             catch (NullReferenceException ex)
             {
@@ -178,6 +175,7 @@ namespace StokTakipWebFormUI
                     });
                     MessageBox.Show("Teslimat Silindi");
                     LoadDataGridView();
+                    LoadProducts();
                 }
 
                 _productService.Update(product);
@@ -285,6 +283,7 @@ namespace StokTakipWebFormUI
         private void button1_Click(object sender, EventArgs e)
         {
             LoadDataGridView();
+            LoadProducts();
         }
         void filter()
         {
@@ -349,6 +348,40 @@ namespace StokTakipWebFormUI
             dgv_saleDetails.DataSource = sortedList;
         }
 
+        private void cb_products_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            StockPlaceHolderText();
+        }
 
+        private void StockPlaceHolderText()
+        {
+            if (cb_products.SelectedItem != null)
+            {
+                var selectedProduct = (Product)cb_products.SelectedItem;
+                tb_quantity.Clear();
+                lbl_note.Text = selectedProduct.Note;
+                if (selectedProduct.StockQuantity <= 0)
+                {
+                    tb_quantity.PlaceholderText = "Stok tükenmiştir.";
+                }
+                else
+                {
+                    tb_quantity.PlaceholderText = "Mevcut Stok: " + selectedProduct.StockQuantity.ToString();
+                }
+
+                //tb_quantity.PlaceholderText = "Mevcut Stok: "+selectedProduct.StockQuantity.ToString();
+            }
+            else
+            {
+                tb_quantity.Clear();
+            }
+        }
+
+        private void btn_fillProducts_Click(object sender, EventArgs e)
+        {
+            cb_products.DataSource = _productService.GetAll().OrderBy(p => p.ProductName).ToList();
+            cb_products.ValueMember = "ProductId";
+            cb_products.DisplayMember = "ProductName";
+        }
     }
 }

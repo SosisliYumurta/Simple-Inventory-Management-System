@@ -13,7 +13,6 @@ namespace StokTakipWebFormUI
     public partial class ProductsPage : Form
     {
         private bool isAscending = true;
-        private bool isDateActive = false;
         private IProductService _productService;
         private ICategoryService _categoryService;
         public ProductsPage()
@@ -28,7 +27,6 @@ namespace StokTakipWebFormUI
             LoadCategory();
             LoadProducts();
             LoadCategoryForAdding();
-
             ChangeColumsName();
             TotalPriceForAllProducts();
         }
@@ -56,6 +54,7 @@ namespace StokTakipWebFormUI
             dgw_productsList.Columns["DateAdded"].HeaderText = "Ürün Eklenme Tarihi";
             dgw_productsList.Columns["UnitPrice"].HeaderText = "Ürün Birim Fiyatý";
             dgw_productsList.Columns["TotalPrice"].HeaderText = "Toplam Fiyat";
+            dgw_productsList.Columns["Note"].HeaderText = "Açýklama";
         }
         void LoadCategoryForAdding()
         {
@@ -63,9 +62,9 @@ namespace StokTakipWebFormUI
             cb_categoryName.ValueMember = "CategoryId";
             cb_categoryName.DisplayMember = "CategoryName";
         }
-        void  LoadProducts()
+        void LoadProducts()
         {
-            
+
             dgw_productsList.DataSource = _productService.GetProductDetail();
             dgw_productsList.Columns[0].Visible = false;
             TotalPriceForAllProducts();
@@ -118,6 +117,7 @@ namespace StokTakipWebFormUI
                     StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
                     UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
                     DateAdded = dtp_dateAdded.Text,
+                    Note = tb_note.Text,
                 });
                 MessageBox.Show("Ürün eklendi");
                 LoadProducts();
@@ -141,6 +141,8 @@ namespace StokTakipWebFormUI
                     StockQuantity = Convert.ToInt32(tb_stockQuantity.Text),
                     UnitPrice = Convert.ToDecimal(tb_unitPrice.Text),
                     DateAdded = dtp_dateAdded.Text,
+                    Note = tb_note.Text,
+
                 });
                 MessageBox.Show("Ürün Güncellendi");
                 LoadProducts();
@@ -160,6 +162,7 @@ namespace StokTakipWebFormUI
             tb_stockQuantity.Text = row.Cells["StockQuantity"].Value.ToString();
             tb_unitPrice.Text = row.Cells["UnitPrice"].Value.ToString();
             dtp_dateAdded.Text = row.Cells["DateAdded"].Value.ToString();
+            tb_note.Text = row.Cells["Note"].Value.ToString();
         }
 
         private void btn_deleteProduct_Click(object sender, EventArgs e)
@@ -232,7 +235,7 @@ namespace StokTakipWebFormUI
 
         private void btn_reflesh_Click(object sender, EventArgs e)
         {
-            
+
             dtp_end.Text = DateTime.Now.ToString();
             dtp_start.Text = DateTime.Now.ToString();
             LoadProducts();
@@ -341,10 +344,28 @@ namespace StokTakipWebFormUI
         {
             int columnIndex1 = 3; // 4. sütunun indeksi
             int columnIndex2 = 6; // 7. sütunun indeksi
+            DataGridViewRow row = dgw_productsList.Rows[e.RowIndex];
+
+
+            if (e.RowIndex >= 0)
+            {
+                int columnIndex = 4; // 2. sütunun indeksi
+                int stockAmount = Convert.ToInt32(row.Cells[columnIndex].Value);
+                if (e.Value != null)
+                {
+                    if (stockAmount <= 5 && stockAmount > 0)
+                    {
+                        // Hücre içeriði kýrmýzý yapýlýyor
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    }
+
+                }
+            }
 
             if (e.RowIndex >= 0 && (e.ColumnIndex == columnIndex1 || e.ColumnIndex == columnIndex2))
             {
-                DataGridViewRow row = dgw_productsList.Rows[e.RowIndex];
+                //DataGridViewRow row = dgw_productsList.Rows[e.RowIndex];
                 int value = Convert.ToInt32(row.Cells[e.ColumnIndex].Value);
 
 
@@ -352,6 +373,25 @@ namespace StokTakipWebFormUI
                 row.Cells[e.ColumnIndex].Style.Font = new Font(dgw_productsList.Font, FontStyle.Bold);
 
 
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == 4)
+            {
+                int columnIndex = 4; // 2. sütunun indeksi
+                int stockAmount = Convert.ToInt32(row.Cells[columnIndex].Value);
+                if (e.Value != null)
+                {
+                    if (stockAmount <= 5 && stockAmount > 0)
+                    {
+                        // Hücre içeriði kýrmýzý yapýlýyor
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    }
+                    else if (stockAmount == 0)
+                    {
+                        e.CellStyle.BackColor = Color.Red;
+                    }
+
+                }
             }
         }
     }

@@ -52,6 +52,8 @@
             pictureBox2 = new PictureBox();
             label11 = new Label();
             label10 = new Label();
+            lbl_note = new Label();
+            btn_fillProducts = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_saleDetails).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -60,7 +62,7 @@
             // 
             btn_sell.Image = Properties.Resources.Plus;
             btn_sell.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_sell.Location = new Point(1266, 459);
+            btn_sell.Location = new Point(1265, 422);
             btn_sell.Name = "btn_sell";
             btn_sell.Size = new Size(184, 59);
             btn_sell.TabIndex = 11;
@@ -72,7 +74,7 @@
             // 
             // tb_quantity
             // 
-            tb_quantity.Location = new Point(1227, 307);
+            tb_quantity.Location = new Point(1226, 270);
             tb_quantity.Name = "tb_quantity";
             tb_quantity.PlaceholderText = "Miktar";
             tb_quantity.Size = new Size(242, 27);
@@ -82,16 +84,17 @@
             // 
             cb_products.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_products.FormattingEnabled = true;
-            cb_products.Location = new Point(1227, 115);
+            cb_products.Location = new Point(1226, 78);
             cb_products.Name = "cb_products";
-            cb_products.Size = new Size(242, 28);
+            cb_products.Size = new Size(206, 28);
             cb_products.TabIndex = 7;
+            cb_products.SelectedIndexChanged += cb_products_SelectedIndexChanged;
             // 
             // cb_customers
             // 
             cb_customers.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_customers.FormattingEnabled = true;
-            cb_customers.Location = new Point(1227, 211);
+            cb_customers.Location = new Point(1226, 174);
             cb_customers.Name = "cb_customers";
             cb_customers.Size = new Size(242, 28);
             cb_customers.TabIndex = 8;
@@ -121,7 +124,7 @@
             // 
             // dtp_dateProductSale
             // 
-            dtp_dateProductSale.Location = new Point(1227, 401);
+            dtp_dateProductSale.Location = new Point(1226, 364);
             dtp_dateProductSale.Name = "dtp_dateProductSale";
             dtp_dateProductSale.Size = new Size(242, 27);
             dtp_dateProductSale.TabIndex = 10;
@@ -164,7 +167,7 @@
             // 
             btn_deleteProductSale.Image = Properties.Resources.Trash;
             btn_deleteProductSale.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_deleteProductSale.Location = new Point(1266, 613);
+            btn_deleteProductSale.Location = new Point(1265, 576);
             btn_deleteProductSale.Name = "btn_deleteProductSale";
             btn_deleteProductSale.Size = new Size(184, 59);
             btn_deleteProductSale.TabIndex = 13;
@@ -177,7 +180,7 @@
             // 
             btn_updateProductSale.Image = Properties.Resources.Edit;
             btn_updateProductSale.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_updateProductSale.Location = new Point(1266, 536);
+            btn_updateProductSale.Location = new Point(1265, 499);
             btn_updateProductSale.Name = "btn_updateProductSale";
             btn_updateProductSale.Size = new Size(184, 59);
             btn_updateProductSale.TabIndex = 12;
@@ -189,7 +192,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1303, 69);
+            label3.Location = new Point(1302, 32);
             label3.Name = "label3";
             label3.Size = new Size(93, 20);
             label3.TabIndex = 19;
@@ -198,7 +201,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1311, 169);
+            label4.Location = new Point(1310, 132);
             label4.Name = "label4";
             label4.Size = new Size(85, 20);
             label4.TabIndex = 20;
@@ -207,7 +210,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(1275, 261);
+            label5.Location = new Point(1274, 224);
             label5.Name = "label5";
             label5.Size = new Size(156, 20);
             label5.TabIndex = 21;
@@ -216,7 +219,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(1303, 357);
+            label6.Location = new Point(1302, 320);
             label6.Name = "label6";
             label6.Size = new Size(86, 20);
             label6.TabIndex = 22;
@@ -292,11 +295,32 @@
             label10.Text = "Başlangıç Tarihi";
             label10.UseWaitCursor = true;
             // 
+            // lbl_note
+            // 
+            lbl_note.Location = new Point(1225, 651);
+            lbl_note.Name = "lbl_note";
+            lbl_note.Size = new Size(243, 257);
+            lbl_note.TabIndex = 37;
+            lbl_note.Text = "Açıklama";
+            // 
+            // btn_fillProducts
+            // 
+            btn_fillProducts.BackgroundImage = Properties.Resources.Restart;
+            btn_fillProducts.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_fillProducts.Location = new Point(1436, 77);
+            btn_fillProducts.Name = "btn_fillProducts";
+            btn_fillProducts.Size = new Size(32, 29);
+            btn_fillProducts.TabIndex = 38;
+            btn_fillProducts.UseVisualStyleBackColor = true;
+            btn_fillProducts.Click += btn_fillProducts_Click;
+            // 
             // ProductSalePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 953);
+            Controls.Add(btn_fillProducts);
+            Controls.Add(lbl_note);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(pictureBox2);
@@ -358,5 +382,7 @@
         private PictureBox pictureBox2;
         private Label label11;
         private Label label10;
+        private Label lbl_note;
+        private Button btn_fillProducts;
     }
 }

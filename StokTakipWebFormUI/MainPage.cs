@@ -181,7 +181,7 @@ namespace StokTakipWebFormUI
             //}
             if (e.Value != null)
             {
-                if (stockAmount <= 15)
+                if (stockAmount <= 5)
                 {
                     // Hücre içeriği kırmızı yapılıyor
                     e.CellStyle.ForeColor = Color.Red;
